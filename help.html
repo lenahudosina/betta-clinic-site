@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261028-2">
+<link rel="stylesheet" href="styles.css?v=20261028-6">
 </head>
 <body>
 
@@ -140,6 +140,54 @@
   </div>
 </section>
 
+<!-- ===================== БЛОК «ОСТАВЬТЕ ЗАЯВКУ» ===================== -->
+<section class="apply" data-node-id="1:459" data-node-id-mobile="1:1872" aria-labelledby="apply-title">
+  <div class="apply__photo">
+    <img src="assets/apply/photo-desktop.webp" alt="Клиентка клиники БЕТТА" class="apply__photo-img" loading="lazy" decoding="async">
+  </div>
+
+  <h2 id="apply-title" class="apply__title">Оставьте заявку</h2>
+
+  <form class="apply__form" id="apply-form" novalidate>
+    <div class="apply__field apply__field--name">
+      <input class="apply__input" type="text" name="name" placeholder="Имя" autocomplete="name">
+    </div>
+
+    <div class="apply__field apply__field--phone">
+      <input class="apply__input" type="tel" name="phone" placeholder="Ваш телефон" autocomplete="tel">
+    </div>
+
+    <div class="apply__field apply__field--procedure">
+      <input class="apply__input" type="text" name="procedure" placeholder="Выберите процедуру" readonly>
+      <img src="assets/apply/field-icon.svg" alt="" class="apply__field-icon" loading="lazy" decoding="async">
+    </div>
+
+    <div class="apply__field apply__field--date">
+      <input class="apply__input" type="text" id="apply-date-display" name="date" placeholder="Выберите дату" readonly autocomplete="off">
+      <input class="apply__date-native" type="date" id="apply-date-native" tabindex="-1" aria-hidden="true">
+      <img src="assets/apply/field-icon.svg" alt="" class="apply__field-icon" loading="lazy" decoding="async">
+    </div>
+
+    <label class="apply__textarea-label" for="apply-comment">Укажите Ваш вопрос или&nbsp;комментарий</label>
+    <textarea class="apply__textarea" id="apply-comment" name="comment"></textarea>
+
+    <label class="apply__consent">
+      <input type="checkbox" name="consent" required>
+      <span class="apply__consent-box" aria-hidden="true">
+        <svg class="apply__consent-check" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="apply__consent-text">Я подтверждаю ознакомление с&nbsp;<a href="privacy.html" target="_blank" rel="noopener">Политикой обработки персональных данных</a> и&nbsp;даю согласие на&nbsp;обработку персональных данных в&nbsp;порядке и&nbsp;на&nbsp;условиях, указанных в&nbsp;Политике.</span>
+    </label>
+
+    <button class="btn btn--book apply__submit" type="submit">
+      <span>Записаться</span>
+      <img src="assets/about-btn-arrow.svg" alt="" class="btn__icon" loading="lazy" decoding="async">
+    </button>
+  </form>
+</section>
+
 <footer class="site-footer" id="contacts">
   <div class="site-footer__map" aria-label="Карта — ул. Пискунова, 29, Нижний Новгород">
     <a class="site-footer__map-link" href="https://yandex.ru/maps/?pt=44.0102564,56.3245359&amp;z=17&amp;l=map" target="_blank" rel="noopener" aria-label="Открыть адрес клиники БЕТТА в Яндекс Картах">
@@ -207,7 +255,7 @@
   </button>
 </div>
 
-<script src="script.js?v=20261028-7"></script>
+<script src="script.js?v=20261028-9"></script>
 <script>
   document.querySelectorAll('.help__tab').forEach(function (tab) {
     tab.addEventListener('click', function () {

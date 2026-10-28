@@ -272,7 +272,7 @@ button {
 }
 
 .hero__overlay--mobile {
-  background: var(--overlay-mobile);
+  background: none;
 }
 
 .logo--mobile {
@@ -6093,3 +6093,36 @@ html {
 .cookie-banner__text a{color:var(--cream);text-decoration:underline}
 .cookie-banner__btn{flex:none;padding:12px 28px;border:1px solid var(--cream);border-radius:999px;background:var(--cream);color:var(--brown);font:600 14px var(--font-body);cursor:pointer}
 @media (max-width:700px){.cookie-banner{flex-direction:column;align-items:stretch;gap:12px;bottom:12px;padding:16px}.cookie-banner__text{font-size:13px}.cookie-banner__btn{width:100%}}
+
+/* Мобильная версия: первый экран и форма записи помещаются в высоту экрана */
+@media (max-width: 900px) {
+  .hero--mobile { aspect-ratio: auto; height: min(217.41vw, 100svh); min-height: 500px; }
+  .hero__meta--mobile { top: auto; bottom: 25cqw; }
+  .btn--book-mobile { top: auto; bottom: 5cqw; }
+
+  .apply { aspect-ratio: 402 / 655; }
+  .apply__title { top: 4cqw; }
+  .apply__field--name { top: 22cqw; }
+  .apply__field--phone { top: 35cqw; }
+  .apply__field--procedure { top: 48cqw; }
+  .apply__field--date { top: 61cqw; }
+  .apply__textarea-label { top: 76cqw; }
+  .apply__textarea { top: 83cqw; height: 26cqw; }
+  .apply__consent { top: 114cqw; align-items: flex-start; }
+  .apply__consent-text { line-height: 1.4; }
+  .apply__submit { top: 141cqw; }
+}
+
+/* Блог на телефоне: вертикальный список компактных карточек */
+@media (max-width: 900px) {
+  .blog__viewport { left: 0; width: auto; margin: 5.8cqw 3.7cqw 0; overflow: visible; }
+  .blog__track { display: flex; flex-direction: column; gap: 3.5cqw; transform: none !important; transition: none; }
+  .blog__track .blog-card { flex: none; width: 100%; display: flex; align-items: center; gap: 4cqw; padding: 2.5cqw; border: 1px solid #e6e1de; border-radius: 2.5cqw; text-decoration: none; }
+  .blog-card__image { flex: 0 0 28cqw; width: 28cqw; height: 28cqw; object-fit: cover; border-radius: 1.8cqw; }
+  .blog-card__body { margin-top: 0; min-width: 0; }
+  .blog-card__eyebrow { font-size: 3.2cqw; margin-bottom: 1cqw; }
+  .blog-card__title { font-size: 4.4cqw; line-height: 1.15; margin-bottom: 2cqw; }
+  .blog-card__link { font-size: 3.6cqw; }
+  #blog-dots-mobile { padding: 4cqw 0 6cqw; }
+  .blog__count { font-size: 3.4cqw; color: #979797; }
+}
