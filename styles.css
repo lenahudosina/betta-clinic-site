@@ -6100,7 +6100,7 @@ html {
   .hero__meta--mobile { top: auto; bottom: 25cqw; }
   .btn--book-mobile { top: auto; bottom: 5cqw; }
 
-  .apply { aspect-ratio: 402 / 628; }
+  .apply { aspect-ratio: 402 / 614; }
   .apply__title { top: 4cqw; }
   .apply__field--name { top: 22cqw; }
   .apply__field--phone { top: 35cqw; }
@@ -6110,7 +6110,7 @@ html {
   .apply__textarea { top: 83cqw; height: 26cqw; }
   .apply__consent { top: 114cqw; align-items: flex-start; }
   .apply__consent-text { line-height: 1.4; }
-  .apply__submit { top: 127cqw; }
+  .apply__submit { top: 126.5cqw; }
 }
 
 /* Блог на телефоне: вертикальный список компактных карточек */
@@ -6129,8 +6129,8 @@ html {
 
 /* Мобильная версия: правки по результатам просмотра */
 @media (max-width: 900px) {
-  .hero__heading--mobile { top: 29.5cqw; }
-  .about__label--mobile { top: 80.8cqw; }
+  .hero__heading--mobile { top: 28.2cqw; }
+  .about__label--mobile { top: 80.3cqw; }
 
   /* секции целиком помещаются в высоту экрана: сужаем блок, всё содержимое уменьшается пропорционально */
 
@@ -6229,12 +6229,18 @@ html {
   .svc-screen .service-card__image { height: min(133.5821cqw, calc(100svh - 455px)); }
   .services__dots { bottom: 2cqw; }
   .services__viewport { top: 41cqw; }
-  body > .services .service-card__image { height: min(133.5821cqw, calc(100svh - 360px)); }
-  .svc-screen .service-card__image { height: min(133.5821cqw, calc(100svh - 420px)); }
+  body > .services .service-card__image { height: min(133.5821cqw, calc(100svh - 395px)); }
+  .svc-screen .service-card__image { height: min(133.5821cqw, calc(100svh - 455px)); }
 }
 
 /* Телефон: кнопка «Помочь с выбором» не показывается */
 @media (max-width: 900px) {
   .services__help-wrap,
   .svc-help { display: none !important; }
+}
+
+@media (max-width: 900px) {
+  .why { padding-top: 12cqw; }
+  .team-card { gap: 2.2cqw; }
+  .reviews__track .review-card { height: min(164.9254cqw, calc(100svh - 185px)); }
 }
