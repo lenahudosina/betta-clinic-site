@@ -561,18 +561,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  let touchStartX = null;
-  track.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-  }, { passive: true });
-
-  track.addEventListener('touchend', e => {
-    if (touchStartX == null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    touchStartX = null;
-    if (Math.abs(dx) < 40) return;
+  // Свайп пальцем или мышью: листаем, если сдвиг по горизонтали заметно больше вертикального.
+  let startX = null, startY = 0;
+  track.style.touchAction = 'pan-y';
+  track.querySelectorAll('img').forEach(img => { img.draggable = false; });
+  track.addEventListener('pointerdown', e => { startX = e.clientX; startY = e.clientY; });
+  track.addEventListener('pointerup', e => {
+    if (startX == null) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    startX = null;
+    if (Math.abs(dx) < 30 || Math.abs(dx) < Math.abs(dy)) return;
     setIndex(index + (dx < 0 ? 1 : -1), true);
-  }, { passive: true });
+  });
+  track.addEventListener('pointercancel', () => { startX = null; });
 
   window.addEventListener('resize', () => {
     index = Math.min(index, maxIndex());
@@ -750,18 +752,20 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCards();
   });
 
-  let touchStartX = null;
-  track.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-  }, { passive: true });
-
-  track.addEventListener('touchend', e => {
-    if (touchStartX == null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    touchStartX = null;
-    if (Math.abs(dx) < 40) return;
+  // Свайп пальцем или мышью: листаем, если сдвиг по горизонтали заметно больше вертикального.
+  let startX = null, startY = 0;
+  track.style.touchAction = 'pan-y';
+  track.querySelectorAll('img').forEach(img => { img.draggable = false; });
+  track.addEventListener('pointerdown', e => { startX = e.clientX; startY = e.clientY; });
+  track.addEventListener('pointerup', e => {
+    if (startX == null) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    startX = null;
+    if (Math.abs(dx) < 30 || Math.abs(dx) < Math.abs(dy)) return;
     setIndex(index + (dx < 0 ? 1 : -1));
-  }, { passive: true });
+  });
+  track.addEventListener('pointercancel', () => { startX = null; });
 
   window.addEventListener('resize', () => {
     if (isMobile()) renderCarousel();
@@ -877,18 +881,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  let touchStartX = null;
-  track.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-  }, { passive: true });
-
-  track.addEventListener('touchend', e => {
-    if (touchStartX == null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    touchStartX = null;
-    if (Math.abs(dx) < 40) return;
+  // Свайп пальцем или мышью: листаем, если сдвиг по горизонтали заметно больше вертикального.
+  let startX = null, startY = 0;
+  track.style.touchAction = 'pan-y';
+  track.querySelectorAll('img').forEach(img => { img.draggable = false; });
+  track.addEventListener('pointerdown', e => { startX = e.clientX; startY = e.clientY; });
+  track.addEventListener('pointerup', e => {
+    if (startX == null) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    startX = null;
+    if (Math.abs(dx) < 30 || Math.abs(dx) < Math.abs(dy)) return;
     setIndex(index + (dx < 0 ? 1 : -1), true);
-  }, { passive: true });
+  });
+  track.addEventListener('pointercancel', () => { startX = null; });
 
   window.addEventListener('resize', () => {
     index = Math.min(index, maxIndex());
@@ -975,7 +981,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    dateField.addEventListener('click', openPicker);
+    dateNative.min = new Date().toISOString().slice(0, 10);
+    dateField.addEventListener('click', e => {
+      if (e.target !== dateNative) openPicker();
+    });
 
     dateNative.addEventListener('change', () => {
       if (!dateNative.value) {
@@ -986,6 +995,37 @@ document.addEventListener('DOMContentLoaded', () => {
       dateDisplay.value = `${day}.${month}.${year}`;
     });
   }
+
+  // Пока посетитель не согласился с политикой, вводить данные нельзя.
+  const consentInput = form.querySelector('.apply__consent input');
+  const consentLabel = form.querySelector('.apply__consent');
+  const textFields = form.querySelectorAll('.apply__input[name="name"], .apply__input[name="phone"], .apply__textarea');
+  const applyLock = () => {
+    const locked = !consentInput.checked;
+    form.classList.toggle('is-locked', locked);
+    textFields.forEach(f => { f.readOnly = locked; });
+    if (dateNative) dateNative.disabled = locked;
+    if (!locked) consentLabel.classList.remove('is-attention');
+  };
+  const attention = () => {
+    consentLabel.classList.add('is-attention');
+    consentLabel.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  };
+  form.addEventListener('click', e => {
+    if (form.classList.contains('is-locked') && e.target.closest('.apply__field, .apply__textarea, .apply__textarea-label')) {
+      e.preventDefault();
+      e.stopPropagation();
+      attention();
+    }
+  }, true);
+  form.addEventListener('focusin', e => {
+    if (form.classList.contains('is-locked') && e.target.matches('.apply__input, .apply__textarea')) {
+      e.target.blur();
+      attention();
+    }
+  });
+  consentInput.addEventListener('change', applyLock);
+  applyLock();
 })();
 
 /* ===================================================================
@@ -1049,7 +1089,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `<span class="dot${i === 0 ? ' is-active' : ''}"></span>`
     ).join('');
 
-    mobileDotsWrap.innerHTML = `<span class="blog__count">Показано статей: ${visible.length} из ${ARTICLES.length}</span>`;
+    mobileDotsWrap.innerHTML = '';
 
     loadMoreBtn.hidden = visibleCount >= ARTICLES.length;
 
@@ -1074,18 +1114,20 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCards();
   });
 
-  let touchStartX = null;
-  track.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-  }, { passive: true });
-
-  track.addEventListener('touchend', e => {
-    if (touchStartX == null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    touchStartX = null;
-    if (Math.abs(dx) < 40) return;
+  // Свайп пальцем или мышью: листаем, если сдвиг по горизонтали заметно больше вертикального.
+  let startX = null, startY = 0;
+  track.style.touchAction = 'pan-y';
+  track.querySelectorAll('img').forEach(img => { img.draggable = false; });
+  track.addEventListener('pointerdown', e => { startX = e.clientX; startY = e.clientY; });
+  track.addEventListener('pointerup', e => {
+    if (startX == null) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    startX = null;
+    if (Math.abs(dx) < 30 || Math.abs(dx) < Math.abs(dy)) return;
     setIndex(index + (dx < 0 ? 1 : -1));
-  }, { passive: true });
+  });
+  track.addEventListener('pointercancel', () => { startX = null; });
 
   window.addEventListener('resize', () => {
     if (isMobile()) renderCarousel();

@@ -6126,3 +6126,60 @@ html {
   #blog-dots-mobile { padding: 4cqw 0 6cqw; }
   .blog__count { font-size: 3.4cqw; color: #979797; }
 }
+
+/* Мобильная версия: правки по результатам просмотра */
+@media (max-width: 900px) {
+  .hero__heading--mobile { top: 33.4cqw; }
+  .about__label--mobile { top: 81.4cqw; }
+
+  /* секции целиком помещаются в высоту экрана: сужаем блок, всё содержимое уменьшается пропорционально */
+  .about--mobile { width: min(100%, calc((100svh - 58px) * 402 / 874)); margin-inline: auto; }
+  body > .services { width: min(100%, calc((100svh - 58px) * 402 / 950)); margin-inline: auto; }
+  .reviews { width: min(100%, calc((100svh - 58px) * 0.506)); margin-inline: auto; }
+
+  .team-card__name { font-size: 4.6cqw; }
+  .team-card__role { font-size: 3.7cqw; line-height: 5.2cqw; }
+
+  .apply__consent { gap: 2.4cqw; align-items: flex-start; }
+  .apply__consent-box { margin-top: 0.8cqw; }
+}
+
+/* Форма: до согласия с политикой поля заблокированы */
+.apply__form.is-locked .apply__field,
+.apply__form.is-locked .apply__textarea { opacity: 0.55; }
+.apply__consent.is-attention .apply__consent-box { outline: 2px solid #c0392b; outline-offset: 2px; }
+.apply__consent.is-attention .apply__consent-text { color: #c0392b; }
+.apply__date-native { pointer-events: auto; cursor: pointer; }
+
+@media (max-width: 900px) {
+  .service-card__body h3 { min-height: 0; margin-bottom: 3.5cqw; }
+  .svc-screen .service-card__image { height: min(133.5821cqw, calc(100svh - 430px)); min-height: 200px; }
+  .svc-screen > .services { aspect-ratio: auto; height: calc(100svh - 118px); min-height: 520px; }
+  .svc-screen > .services .services__dots { top: auto; bottom: 3cqw; }
+}
+
+/* «Вопросы»: вместо стрелки — плюс / минус */
+.svc-q__btn { position: relative; }
+.svc-q__btn svg { display: none; }
+.svc-q__btn::before,
+.svc-q__btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 1.5px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s ease;
+}
+.svc-q__btn::after { transform: translate(-50%, -50%) rotate(90deg); }
+.svc-q[open] .svc-q__btn::after { transform: translate(-50%, -50%) rotate(0deg); }
+
+@media (max-width: 900px) {
+  .svc-q__head { padding: 16px 0; }
+  .svc-q[open] .svc-q__head { padding-bottom: 8px; }
+  .svc-q__title { line-height: 1.2; }
+  .svc-q__text { padding-bottom: 20px; line-height: 1.3; }
+  .svc-q__text p { margin-bottom: 8px; }
+}
