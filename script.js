@@ -955,7 +955,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dateNative) dateNative.disabled = locked;
     if (!locked) consentLabel.classList.remove('is-attention');
   };
+  let toastTimer = null;
   const attention = () => {
+    let toast = document.querySelector('.apply__toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.className = 'apply__toast';
+      toast.setAttribute('role', 'status');
+      toast.textContent = 'Чтобы заполнить форму, отметьте согласие с политикой';
+      document.body.appendChild(toast);
+    }
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.remove(), 3500);
     consentLabel.classList.add('is-attention');
     consentLabel.scrollIntoView({ block: 'center', behavior: 'smooth' });
   };

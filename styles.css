@@ -6244,3 +6244,23 @@ html {
   .team-card { gap: 2.2cqw; }
   .reviews__track .review-card { height: min(164.9254cqw, calc(100svh - 185px)); }
 }
+
+/* Плюсики в «Выберите процедуру / дату» — по центру строки текста */
+.apply__field-icon { top: 0.28cqw; }
+@media (max-width: 900px) {
+  .apply__field-icon { top: 1.15cqw; }
+}
+.apply__toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 120;
+  max-width: calc(100% - 32px);
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: var(--brown);
+  color: var(--cream);
+  font: 500 14px/1.3 var(--font-body);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+}
