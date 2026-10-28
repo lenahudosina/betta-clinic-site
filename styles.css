@@ -6129,8 +6129,8 @@ html {
 
 /* Мобильная версия: правки по результатам просмотра */
 @media (max-width: 900px) {
-  .hero__heading--mobile { top: 30.8cqw; }
-  .about__label--mobile { top: 81.8cqw; }
+  .hero__heading--mobile { top: 29.5cqw; }
+  .about__label--mobile { top: 80.8cqw; }
 
   /* секции целиком помещаются в высоту экрана: сужаем блок, всё содержимое уменьшается пропорционально */
 
@@ -6217,4 +6217,18 @@ html {
   .team__viewport::-webkit-scrollbar, .reviews__viewport::-webkit-scrollbar, .services__viewport::-webkit-scrollbar { display: none; }
   .team__track, .reviews__track, .services__track { transform: none !important; transition: none; }
   .team__track .team-card, .reviews__track .review-card, .services__track .service-card { scroll-snap-align: start; scroll-snap-stop: always; }
+}
+
+.services__lead .lead-m { display: none; }
+@media (max-width: 900px) {
+  .services__lead .lead-d { display: none; }
+  .services__lead .lead-m { display: inline; }
+  .services__lead { width: 90cqw; }
+  /* точки под кнопками, не поверх них */
+  body > .services .service-card__image { height: min(133.5821cqw, calc(100svh - 395px)); }
+  .svc-screen .service-card__image { height: min(133.5821cqw, calc(100svh - 455px)); }
+  .services__dots { bottom: 2cqw; }
+  .services__viewport { top: 41cqw; }
+  body > .services .service-card__image { height: min(133.5821cqw, calc(100svh - 360px)); }
+  .svc-screen .service-card__image { height: min(133.5821cqw, calc(100svh - 420px)); }
 }
