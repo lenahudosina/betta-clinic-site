@@ -6129,13 +6129,10 @@ html {
 
 /* Мобильная версия: правки по результатам просмотра */
 @media (max-width: 900px) {
-  .hero__heading--mobile { top: 33.4cqw; }
-  .about__label--mobile { top: 81.4cqw; }
+  .hero__heading--mobile { top: 30.8cqw; }
+  .about__label--mobile { top: 81.8cqw; }
 
   /* секции целиком помещаются в высоту экрана: сужаем блок, всё содержимое уменьшается пропорционально */
-  .about--mobile { width: min(100%, calc((100svh - 58px) * 402 / 874)); margin-inline: auto; }
-  body > .services { width: min(100%, calc((100svh - 58px) * 402 / 950)); margin-inline: auto; }
-  .reviews { width: min(100%, calc((100svh - 58px) * 0.506)); margin-inline: auto; }
 
   .team-card__name { font-size: 4.6cqw; }
   .team-card__role { font-size: 3.7cqw; line-height: 5.2cqw; }
@@ -6182,4 +6179,42 @@ html {
   .svc-q__title { line-height: 1.2; }
   .svc-q__text { padding-bottom: 20px; line-height: 1.3; }
   .svc-q__text p { margin-bottom: 8px; }
+}
+
+/* Мобильная версия: блоки помещаются в высоту экрана за счёт высоты фото, а не масштаба */
+@media (max-width: 900px) {
+  /* «О нас» */
+  .about--mobile { aspect-ratio: auto; height: min(217.41vw, calc(100svh - 58px)); min-height: 440px; }
+  .about__photo-wrap--mobile { height: auto; bottom: 22cqw; }
+  .about__photo--mobile { height: auto; bottom: 0; }
+  .about__photo--mobile .about__photo-img { height: 100%; object-fit: cover; object-position: 50% 15%; }
+  .about__btn--mobile { top: auto; bottom: 4cqw; }
+
+  /* «Услуги» на главной */
+  body > .services { aspect-ratio: auto; height: min(236.3vw, calc(100svh - 58px)); min-height: 440px; }
+  body > .services .services__viewport { height: auto; }
+  body > .services .service-card__image { height: min(133.5821cqw, calc(100svh - 370px)); min-height: 170px; }
+  body > .services .services__dots { top: auto; bottom: 3cqw; }
+
+  /* «Отзывы» */
+  .reviews__track .review-card { height: min(164.9254cqw, calc(100svh - 190px)); min-height: 280px; }
+  .review-card img { object-fit: contain; }
+
+  /* согласие с политикой — мельче */
+  .apply__consent-text { font-size: 2.55cqw; line-height: 1.3; }
+  .apply__consent { gap: 2cqw; }
+  .apply__consent-box { margin-top: 0.4cqw; }
+
+  /* лента листается пальцем как в «Аппаратах»: родная прокрутка со «прилипанием» */
+  .team__viewport, .reviews__viewport, .services__viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .team__viewport::-webkit-scrollbar, .reviews__viewport::-webkit-scrollbar, .services__viewport::-webkit-scrollbar { display: none; }
+  .team__track, .reviews__track, .services__track { transform: none !important; transition: none; }
+  .team__track .team-card, .reviews__track .review-card, .services__track .service-card { scroll-snap-align: start; scroll-snap-stop: always; }
 }

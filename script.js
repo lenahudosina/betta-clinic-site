@@ -198,25 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Свайп пальцем или мышью: листаем, если сдвиг по горизонтали заметно больше,
-  // чем по вертикали, — вертикальная прокрутка страницы не мешает.
-  let startX = null, startY = 0;
-  track.style.touchAction = 'pan-y';
-  track.querySelectorAll('img').forEach(img => { img.draggable = false; });
-  track.addEventListener('pointerdown', e => {
-    startX = e.clientX;
-    startY = e.clientY;
-  });
-  track.addEventListener('pointerup', e => {
-    if (startX == null) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    startX = null;
-    if (Math.abs(dx) < 30 || Math.abs(dx) < Math.abs(dy)) return;
-    setIndex(index + (dx < 0 ? 1 : -1), true);
-  });
-  track.addEventListener('pointercancel', () => { startX = null; });
-
   services.setAttribute('tabindex', '0');
   services.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight') setIndex(index + 1, true);
@@ -384,24 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
     dot.addEventListener('click', () => setIndex(Number(dot.dataset.dot)));
   });
 
-  // Свайп пальцем или мышью (pointer events): листаем, если сдвиг по горизонтали
-  // заметно больше, чем по вертикали; вертикальная прокрутка страницы не мешает.
-  let startX = null, startY = 0;
-  track.style.touchAction = 'pan-y';
-  track.querySelectorAll('img').forEach(img => { img.draggable = false; });
-  track.addEventListener('pointerdown', e => {
-    startX = e.clientX;
-    startY = e.clientY;
-  });
-  track.addEventListener('pointerup', e => {
-    if (startX == null) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    startX = null;
-    if (Math.abs(dx) < 30 || Math.abs(dx) < Math.abs(dy)) return;
-    setIndex(index + (dx < 0 ? 1 : -1));
-  });
-  track.addEventListener('pointercancel', () => { startX = null; });
 
   render();
 })();
@@ -751,21 +714,6 @@ document.addEventListener('DOMContentLoaded', () => {
     visibleCount = Math.min(visibleCount + BATCH_SIZE, REVIEWS.length);
     renderCards();
   });
-
-  // Свайп пальцем или мышью: листаем, если сдвиг по горизонтали заметно больше вертикального.
-  let startX = null, startY = 0;
-  track.style.touchAction = 'pan-y';
-  track.querySelectorAll('img').forEach(img => { img.draggable = false; });
-  track.addEventListener('pointerdown', e => { startX = e.clientX; startY = e.clientY; });
-  track.addEventListener('pointerup', e => {
-    if (startX == null) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    startX = null;
-    if (Math.abs(dx) < 30 || Math.abs(dx) < Math.abs(dy)) return;
-    setIndex(index + (dx < 0 ? 1 : -1));
-  });
-  track.addEventListener('pointercancel', () => { startX = null; });
 
   window.addEventListener('resize', () => {
     if (isMobile()) renderCarousel();
@@ -1281,4 +1229,49 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(box);
   };
   if (document.body) show(); else document.addEventListener('DOMContentLoaded', show);
+})();
+
+
+/* ===================================================================
+   Телефон: «Услуги», «Команда», «Отзывы» листаются родной прокруткой
+   (как «Аппараты») — точки следуют за прокруткой и работают как кнопки
+   =================================================================== */
+(() => {
+  const mq = window.matchMedia('(max-width: 900px)');
+  function setup(viewport, dotsSel) {
+    const vp = document.querySelector(viewport);
+    const dotsWrap = document.querySelector(dotsSel);
+    if (!vp || !dotsWrap) return;
+
+    const slides = () => Array.from(vp.querySelectorAll('.service-card, .team-card, .review-card'));
+    const dots = () => Array.from(dotsWrap.querySelectorAll('.dot'));
+
+    function current() {
+      const w = vp.clientWidth || 1;
+      return Math.round(vp.scrollLeft / w);
+    }
+    function sync() {
+      if (!mq.matches) return;
+      const d = dots();
+      const n = slides().length;
+      if (!d.length || !n) return;
+      const i = Math.min(current(), n - 1);
+      const active = d.length === n ? i : Math.min(d.length - 1, Math.round((i / Math.max(1, n - 1)) * (d.length - 1)));
+      d.forEach((dot, k) => dot.classList.toggle('is-active', k === active));
+    }
+    vp.addEventListener('scroll', sync, { passive: true });
+
+    dotsWrap.addEventListener('click', e => {
+      const dot = e.target.closest('.dot');
+      if (!dot || !mq.matches) return;
+      const d = dots();
+      const n = slides().length;
+      const k = d.indexOf(dot);
+      const target = d.length === n ? k : Math.round((k / Math.max(1, d.length - 1)) * (n - 1));
+      vp.scrollTo({ left: target * vp.clientWidth, behavior: 'smooth' });
+    }, true);
+  }
+  setup('.team__viewport', '#team-dots');
+  setup('.reviews__viewport', '#reviews-dots-mobile');
+  setup('.services__viewport', '.services__dots');
 })();
