@@ -1,0 +1,96 @@
+# БЕТТА — .htaccess (Apache). Положить в корень сайта.
+# Старые адреса bettaclinic.ru → новые страницы (301, чтобы сохранить позиции в поиске).
+# Если сервер не Apache (nginx и т. п.) — правила нужно перенести в его формат, список в redirects.csv.
+
+Options -MultiViews
+RewriteEngine On
+
+# Удалённые страницы услуг → страница раздела
+RewriteRule ^uslugi/mikrotokovaya-terapiya\.html$ /uslugi/uslugi-apparatnaya-kosmetologiya.html [R=301,L,NE]
+RewriteRule ^uslugi/liftometriya\.html$ /uslugi/uslugi-apparatnaya-kosmetologiya.html [R=301,L,NE]
+RewriteRule ^uslugi/kavitatsiya\.html$ /uslugi/uslugi-modelirovanie-silueta-i-massazh.html [R=301,L,NE]
+RewriteRule ^uslugi/darsonvalizatsiya\.html$ /uslugi/uslugi-esteticheskaya-kosmetologiya.html [R=301,L,NE]
+
+RewriteRule ^лазерная-косметология/?$ /uslugi/uslugi-lazernaya-kosmetologiya.html [R=301,L,NE]
+RewriteRule ^лазерная-косметология/фотоомоложение/?$ /uslugi/fotoomolozhenie.html [R=301,L,NE]
+RewriteRule ^services/?$ /uslugi/lazernoe-omolozhenie.html [R=301,L,NE]
+RewriteRule ^лазерная-эпиляция/?$ /uslugi/lazernaya-epilyatsiya.html [R=301,L,NE]
+RewriteRule ^лазерная-биоревитализация/?$ /uslugi/lazernaya-biorevitalizatsiya.html [R=301,L,NE]
+RewriteRule ^удаление-шрамов-рубцов-и-новообразов/?$ /uslugi/uslugi-udalenie-shramov-rubtsov-i-novoobrazov.html [R=301,L,NE]
+RewriteRule ^удаление-новообразований/?$ /uslugi/udalenie-novoobrazovaniy.html [R=301,L,NE]
+RewriteRule ^удаление-шрамов/?$ /uslugi/udalenie-shramov.html [R=301,L,NE]
+RewriteRule ^врачебная-косметология/?$ /uslugi/uslugi-vrachebnaya-kosmetologiya.html [R=301,L,NE]
+RewriteRule ^плазмотерапия-лица/?$ /uslugi/plazmoterapiya-litsa.html [R=301,L,NE]
+RewriteRule ^трихология/?$ /uslugi/trihologiya.html [R=301,L,NE]
+RewriteRule ^плацентарная-терапия/?$ /uslugi/platsentarnaya-terapiya.html [R=301,L,NE]
+RewriteRule ^криодеструкция/?$ /uslugi/kriodestruktsiya.html [R=301,L,NE]
+RewriteRule ^акне/?$ /uslugi/akne.html [R=301,L,NE]
+RewriteRule ^электрокоагуляция/?$ /uslugi/elektrokoagulyatsiya.html [R=301,L,NE]
+RewriteRule ^ботулинотерапия-2/?$ /uslugi/uslugi-botulinoterapiya.html [R=301,L,NE]
+RewriteRule ^ботулинотерапия/?$ /uslugi/botulinoterapiya.html [R=301,L,NE]
+RewriteRule ^гипергидроз/?$ /uslugi/gipergidroz.html [R=301,L,NE]
+RewriteRule ^инъекционная-косметология/?$ /uslugi/uslugi-inektsionnaya-kosmetologiya.html [R=301,L,NE]
+RewriteRule ^контурная-пластика/?$ /uslugi/konturnaya-plastika.html [R=301,L,NE]
+RewriteRule ^липолитическая-терапия/?$ /uslugi/lipoliticheskaya-terapiya.html [R=301,L,NE]
+RewriteRule ^мезотерапия/?$ /uslugi/mezoterapiya.html [R=301,L,NE]
+RewriteRule ^инъекционная-карбокситерапия/?$ /uslugi/inektsionnaya-karboksiterapiya.html [R=301,L,NE]
+RewriteRule ^коллагенотерапия/?$ /uslugi/kollagenoterapiya.html [R=301,L,NE]
+RewriteRule ^аппаратная-косметология/?$ /uslugi/uslugi-apparatnaya-kosmetologiya.html [R=301,L,NE]
+RewriteRule ^smas/?$ /uslugi/smas.html [R=301,L,NE]
+RewriteRule ^микротоковая-терапия/?$ /uslugi/uslugi-apparatnaya-kosmetologiya.html [R=301,L,NE]
+RewriteRule ^rf-лифтинг/?$ /uslugi/rf-lifting.html [R=301,L,NE]
+RewriteRule ^лифтометрия/?$ /uslugi/uslugi-apparatnaya-kosmetologiya.html [R=301,L,NE]
+RewriteRule ^холодная-плазма/?$ /uslugi/holodnaya-plazma.html [R=301,L,NE]
+RewriteRule ^bezinjekcionnaya-mez/?$ /uslugi/bezinjekcionnaya-mez.html [R=301,L,NE]
+RewriteRule ^моделирование-силуэта-и-массаж/?$ /uslugi/uslugi-modelirovanie-silueta-i-massazh.html [R=301,L,NE]
+RewriteRule ^rsl-скульптурирование/?$ /uslugi/rsl-skulpturirovanie.html [R=301,L,NE]
+RewriteRule ^массажи/?$ /uslugi/massazhi.html [R=301,L,NE]
+RewriteRule ^кавитация/?$ /uslugi/uslugi-modelirovanie-silueta-i-massazh.html [R=301,L,NE]
+RewriteRule ^прессотерапия/?$ /uslugi/pressoterapiya.html [R=301,L,NE]
+RewriteRule ^эстетическая-косметология/?$ /uslugi/uslugi-esteticheskaya-kosmetologiya.html [R=301,L,NE]
+RewriteRule ^чистка-кожи/?$ /uslugi/chistka-kozhi.html [R=301,L,NE]
+RewriteRule ^массаж-лица/?$ /uslugi/massazh-litsa.html [R=301,L,NE]
+RewriteRule ^карбокситерапия/?$ /uslugi/karboksiterapiya.html [R=301,L,NE]
+RewriteRule ^программы-красоты/?$ /uslugi/programmy-krasoty.html [R=301,L,NE]
+RewriteRule ^пилинги/?$ /uslugi/pilingi.html [R=301,L,NE]
+RewriteRule ^дарсонвализация/?$ /uslugi/uslugi-esteticheskaya-kosmetologiya.html [R=301,L,NE]
+RewriteRule ^реабилитация-после-пластики-и-хирург/?$ /uslugi/uslugi-reabilitatsiya-posle-plastiki-i-hirurg.html [R=301,L,NE]
+RewriteRule ^аппаратная-терапия/?$ /uslugi/apparatnaya-terapiya.html [R=301,L,NE]
+RewriteRule ^инъекционные-методики/?$ /uslugi/inektsionnye-metodiki.html [R=301,L,NE]
+RewriteRule ^contacts/?$ /contacts.html [R=301,L,NE]
+RewriteRule ^glavnaya/kontakty/?$ /contacts.html [R=301,L,NE]
+RewriteRule ^glavnaya/akcii/?$ /promo.html [R=301,L,NE]
+RewriteRule ^glavnaya/aktualnoe/?$ /blog.html [R=301,L,NE]
+RewriteRule ^blog-posts/?$ /blog.html [R=301,L,NE]
+RewriteRule ^category/poleznaya-informaciya/?$ /blog.html [R=301,L,NE]
+RewriteRule ^glavnaya/nashi-apparaty/?$ /devices.html [R=301,L,NE]
+RewriteRule ^glavnaya/o-kompanii/?$ /about.html [R=301,L,NE]
+RewriteRule ^glavnaya/o-kompanii/dokumenty/?$ /about.html [R=301,L,NE]
+RewriteRule ^glavnaya/o-kompanii/otzyvy/?$ /index.html [R=301,L,NE]
+RewriteRule ^glavnaya/o-kompanii/portfolio/?$ /index.html [R=301,L,NE]
+RewriteRule ^glavnaya/o-kompanii/politika-obrabotki-personalnyx-dannyx/?$ /privacy.html [R=301,L,NE]
+RewriteRule ^glavnaya/specialisty/?$ /about.html [R=301,L,NE]
+RewriteRule ^glavnaya/uslugi/?$ /uslugi/index.html [R=301,L,NE]
+RewriteRule ^glavnaya/ceny/?$ /uslugi/index.html [R=301,L,NE]
+RewriteRule ^glavnaya/?$ /index.html [R=301,L,NE]
+RewriteRule ^2022/11/02/apparat-utims-a3-c-texnologiej-centerless/?$ /devices.html [R=301,L,NE]
+RewriteRule ^2024/11/02/deka-motus-ax-moveo/?$ /devices.html [R=301,L,NE]
+RewriteRule ^2025/01/22/ispolzovanii-ii-v-lazernoj-kosmetologii/?$ /blog.html [R=301,L,NE]
+
+# --- сжатие и кеширование (ускоряет загрузку; блоки безопасны, если модуля нет) ---
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/json text/xml
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# --- закрыть служебную папку от посторонних ---
+RedirectMatch 404 ^/tools/
