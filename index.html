@@ -43,6 +43,10 @@
   body > .services .service-card__image { order: 0; }
   body > .services .service-card__actions { order: 1; margin-top: 3cqw; }
   body > .services .service-card__image { height: auto; min-height: 0; flex: 1 1 auto; object-fit: cover; }
+  body > .services .service-card { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; align-content: stretch; }
+  body > .services .service-card__body h3 { grid-row: 1; min-height: 0; margin: 0 0 12px; }
+  body > .services .service-card__image { grid-row: 2; height: 100%; }
+  body > .services .service-card__actions { grid-row: 3; margin-top: 3cqw; }
   body > .why .why__stack { padding-bottom: 30vh; }
 }
 </style>
