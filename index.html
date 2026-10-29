@@ -27,6 +27,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Golos+Text:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20261028-14">
+
+<style id="mobile-layout-fixes">
+@media (max-width: 900px) {
+  .about__label--mobile { top: 80.6cqw; }
+
+  body > .services .services__lead { display: none; }
+  body > .services .services__title { top: 17.4cqw; }
+
+  body > .services .services__viewport { scroll-snap-type: x proximity; }
+  body > .services .services__track { gap: 4cqw; padding-right: 4cqw; }
+  body > .services .service-card {
+    flex: 0 0 calc(100% - 8cqw);
+    width: calc(100% - 8cqw);
+    scroll-snap-stop: normal;
+  }
+  body > .services .service-card__body h3 { min-height: 2.5em; }
+}
+</style>
 </head>
 <body>
 
