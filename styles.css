@@ -6294,3 +6294,11 @@ html {
 /* Remove inactive Instagram and WhatsApp footer links site-wide. */
 .site-footer__social a[aria-label="Instagram"],
 .site-footer__social a[aria-label="WhatsApp"] { display: none !important; }
+
+/* Equal inset around the arrow square in mobile booking buttons. */
+@media (max-width: 900px) {
+  .btn--book-mobile,
+  .about__btn--mobile,
+  .apply__submit { padding-right: 1.5127cqw; }
+  .services .btn--primary { padding-right: 1.36815cqw; }
+}
