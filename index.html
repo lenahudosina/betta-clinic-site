@@ -33,14 +33,14 @@
   .about__label--mobile { top: 80.6cqw; }
   body > .services .services__lead { display: none; }
   body > .services .services__title { top: 17.4cqw; }
-  body > .services .services__viewport { top: 29cqw; scroll-snap-type: x mandatory; scroll-padding-inline: 0; }
+  body > .services .services__viewport { top: 29cqw; bottom: 8cqw; height: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 0; }
   body > .services .services__track { gap: 4cqw; }
-  body > .services .service-card { flex: 0 0 100%; width: 100%; display: flex; flex-direction: column; scroll-snap-stop: always; }
+  body > .services .service-card { flex: 0 0 100%; width: 100%; display: flex; flex-direction: column; height: 100%; scroll-snap-stop: always; }
   body > .services .service-card__body { display: contents; }
   body > .services .service-card__body h3 { order: -1; min-height: 2.5em; margin: 0 0 3cqw; }
   body > .services .service-card__image { order: 0; }
   body > .services .service-card__actions { order: 1; margin-top: 3cqw; }
-  body > .services .service-card__image { height: max(170px, min(133.5821cqw, calc(100svh - 290px))); }
+  body > .services .service-card__image { height: auto; min-height: 0; flex: 1 1 0; }
 }
 </style>
 </head>
