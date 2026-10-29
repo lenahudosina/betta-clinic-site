@@ -6280,3 +6280,13 @@ html {
   .svc-screen .service-card__actions { order: 1; flex: none; margin-top: 3cqw; }
   .svc-screen .services__dots { top: auto; bottom: 3cqw; }
 }
+
+/* Clear hierarchy and consistent card spacing on mobile category pages. */
+@media (max-width: 900px) {
+  .svc-screen .svc-page-title { padding: 0 3cqw 2cqw; }
+  .svc-screen .svc-page-title::before { content: "Услуги"; display: block; padding: 12px 0 10px; color: #8c817c; font: 500 12px/1.2 var(--font-heading); letter-spacing: 0; }
+  .svc-screen .service-card { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; align-content: stretch; }
+  .svc-screen .service-card__body h3 { grid-row: 1; margin: 0 0 12px; min-height: 0; }
+  .svc-screen .service-card__image { grid-row: 2; height: 100%; min-height: 0; }
+  .svc-screen .service-card__actions { grid-row: 3; margin-top: 3cqw; }
+}
