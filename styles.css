@@ -6264,3 +6264,19 @@ html {
   font: 500 14px/1.3 var(--font-body);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
 }
+
+/* Mobile category carousels share the homepage card layout. */
+@media (max-width: 900px) {
+  .svc-screen { height: calc(100svh - 58px); min-height: 0; }
+  .svc-screen .svc-page-title { flex: none; padding: 4cqw 3cqw 2cqw; }
+  .svc-screen > .services { flex: 1 1 auto; min-height: 0; height: auto; margin-top: 0; }
+  .svc-screen .services__lead { display: none; }
+  .svc-screen .services__viewport { top: 2cqw; bottom: 8cqw; height: auto; scroll-snap-type: x mandatory; }
+  .svc-screen .services__track { height: 100%; gap: 4cqw; }
+  .svc-screen .service-card { flex: 0 0 100%; width: 100%; height: 100%; display: flex; flex-direction: column; scroll-snap-stop: always; }
+  .svc-screen .service-card__body { display: contents; }
+  .svc-screen .service-card__body h3 { order: -1; flex: none; min-height: 3.75em; margin: 0 0 3cqw; }
+  .svc-screen .service-card__image { order: 0; flex: 1 1 auto; width: 100%; height: auto; min-height: 0; object-fit: cover; }
+  .svc-screen .service-card__actions { order: 1; flex: none; margin-top: 3cqw; }
+  .svc-screen .services__dots { top: auto; bottom: 3cqw; }
+}
