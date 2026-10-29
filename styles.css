@@ -6290,3 +6290,7 @@ html {
   .svc-screen .service-card__image { grid-row: 2; height: 100%; min-height: 0; }
   .svc-screen .service-card__actions { grid-row: 3; margin-top: 3cqw; }
 }
+
+/* Remove inactive Instagram and WhatsApp footer links site-wide. */
+.site-footer__social a[aria-label="Instagram"],
+.site-footer__social a[aria-label="WhatsApp"] { display: none !important; }
