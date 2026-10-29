@@ -54,8 +54,7 @@
   body > .why .why-card-wrap:last-child { padding-bottom: 0; }
   body > .why .why-card-wrap:last-child { position: relative; top: auto; z-index: 10; }
   body > .why .why-card-wrap:last-child .why-card { translate: 0 0 !important; }
-  body > .why .why-card-wrap:not(:last-child) { transition: opacity 0.35s ease; }
-  body > .why .why__stack--final .why-card-wrap:not(:last-child) { opacity: 0; }
+  body > .why .why-card-wrap:last-child::after { content: ""; position: absolute; top: 100%; left: 0; right: 0; height: 100vh; background: #fff; pointer-events: none; }
   body > .why { overflow: clip; }
   body > .why + .team { margin-top: 16px; }
   body > .why + .team { position: relative; z-index: 2; background: #fff; }
@@ -663,6 +662,6 @@
   </button>
 </div>
 
-<script src="script.js?v=20261029-26"></script>
+<script src="script.js?v=20261029-27"></script>
 </body>
 </html>
