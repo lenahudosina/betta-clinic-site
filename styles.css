@@ -6302,3 +6302,24 @@ html {
   .apply__submit { padding-right: 1.5127cqw; }
   .services .btn--primary { padding-right: 1.36815cqw; }
 }
+
+/* Shared mobile typography for primary page and section headings. */
+@media (max-width: 900px) {
+  .about__heading--mobile,
+  .services__title,
+  .why__heading,
+  .team__heading,
+  .devices__title,
+  .reviews__title,
+  .apply__title,
+  .blog__title,
+  .promo__title,
+  .help__title,
+  .svc-page-title {
+    font-family: var(--font-heading);
+    font-size: 7.6567cqw;
+    font-weight: 500;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+  }
+}
