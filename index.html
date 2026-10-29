@@ -30,6 +30,8 @@
 
 <style id="mobile-layout-fixes">
 @media (max-width: 900px) {
+  body > section:not([hidden]):not(.hero--desktop):not(.about--desktop):not(.stats--desktop) + section:not([hidden]):not(.hero--desktop):not(.about--desktop):not(.stats--desktop) { margin-top: 16px; }
+  body > .team { margin-top: 16px; }
   .about__label--mobile { top: 80.6cqw; }
   body > .services .services__lead { display: none; }
   body > .services .services__title { top: 17.4cqw; }
