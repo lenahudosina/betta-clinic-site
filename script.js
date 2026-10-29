@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
     progress = Math.min(Math.max(progress, 0), 1);
 
     const lastWrap = stack.querySelector('.why-card-wrap:last-child');
-    const finalCardReached = window.matchMedia('(max-width: 900px)').matches && lastWrap && lastWrap.getBoundingClientRect().top <= 1;
+    const finalCardReached = window.matchMedia('(max-width: 900px)').matches && lastWrap && lastWrap.getBoundingClientRect().top <= window.innerHeight * 0.8;
     stack.classList.toggle('why__stack--final', Boolean(finalCardReached));
 
     cardConfig.forEach(({ el, start, targetScale, offsetVh }) => {
