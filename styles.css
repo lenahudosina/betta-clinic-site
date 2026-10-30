@@ -6434,3 +6434,8 @@ html, body { max-width: 100%; overflow-x: clip; }
     color: rgba(63, 39, 28, 0.45);
   }
 }
+
+/* Compact article opening and requested introductory text spacing. */
+.article { padding-top: 36px; }
+.article__lead { line-height: 1; }
+@media (max-width: 900px) { .article { padding-top: 24px; } }

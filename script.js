@@ -915,10 +915,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Заглушки статей — чтобы добавить новую, просто дописать объект в конец массива.
   const ARTICLES = [
-    { id: 1, image: 'assets/apply/photo-desktop.webp', date: '12.09.2026', title: 'Забота о коже: с чего начать', url: 'articles/kozha-s-chego-nachat.html' },
+    { id: 1, image: 'assets/why-us/card-01.webp', date: '12.09.2026', title: 'Забота о коже: с чего начать', url: 'articles/kozha-s-chego-nachat.html' },
     { id: 2, image: 'assets/services/aes-programmy-krasoty.webp', date: '05.09.2026', title: 'Как подготовиться к визиту в клинику', url: 'articles/pered-vizitom-v-kliniku.html' },
     { id: 3, image: 'assets/services/rehabilitation.webp', date: '28.08.2026', title: 'Уход после процедур: общие рекомендации', url: 'articles/uhod-posle-procedur.html' },
-    { id: 4, image: 'assets/face-mobile.webp', date: '19.08.2026', title: 'Привычки, которые влияют на состояние кожи', url: 'articles/privychki-i-kozha.html' }
+    { id: 4, image: 'assets/blog/habits-injection.jpg', date: '19.08.2026', title: 'Привычки, которые влияют на состояние кожи', url: 'articles/privychki-i-kozha.html' }
   ];
 
   const BATCH_SIZE = 4;
