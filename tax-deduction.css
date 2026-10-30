@@ -194,3 +194,12 @@
   .tax-inline-choice { font-size: 14px; }
   .tax-submit { width: 100%; }
 }
+
+/* Spacing and shared booking-button appearance. */
+.tax-form__group + .tax-form__group legend { padding-top: 14px; }
+.tax-contact { justify-content: flex-start; }
+.tax-contact p { margin: 0 0 12px; }
+.tax-contact small { margin: 0; }
+.tax-contact a { margin-top: auto; padding-top: 28px; }
+.tax-submit { padding: 6px 6px 6px 20px; border-radius: 5px; min-height: 60px; }
+.tax-submit .btn__icon { width: 48px; height: 48px; flex: 0 0 48px; }

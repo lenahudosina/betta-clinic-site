@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Golos+Text:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20261030-tax1">
-<link rel="stylesheet" href="tax-deduction.css?v=1">
+<link rel="stylesheet" href="tax-deduction.css?v=2">
 </head>
 <body>
 <header class="page-header" id="pageHeader">
@@ -71,10 +71,9 @@
       <p class="tax-lead">Для получения справки об оплате медицинских услуг предлагаем заполнить заявление. Справку можно запросить за оплаченные услуги за последние три года. Если нужен документ за текущий год, уточните порядок оформления у администратора.</p>
     </div>
     <aside class="tax-contact" aria-label="Контакт клиники">
-      <span class="tax-contact__number">01</span>
-      <p>Нужна помощь с заполнением?</p>
-      <a href="tel:+78312810888">+7 (831) 281-08-88 <span aria-hidden="true">↗</span></a>
-      <small>Подскажем, какие сведения понадобятся для заявления.</small>
+      <p>Нужна помощь с заявлением?</p>
+      <small>Подскажем, какие сведения понадобятся.</small>
+      <a href="tel:+78312810888">+7 (831) 281-08-88</a>
     </aside>
   </section>
 
@@ -182,7 +181,7 @@
       <div class="tax-form__bottom">
         <label class="tax-inline-choice tax-inline-choice--consent"><input type="checkbox" id="tax-instructions-read" required><span>Я ознакомился(-ась) с инструкцией по заполнению заявления.</span></label>
         <label class="tax-inline-choice tax-inline-choice--consent"><input type="checkbox" id="tax-consent" required><span>Я принимаю условия <a href="privacy.html" target="_blank" rel="noopener">Политики обработки персональных данных</a>.</span></label>
-        <button class="tax-submit" id="tax-check-button" type="button">Проверить заполнение <span aria-hidden="true">↗</span></button>
+        <button class="tax-submit" id="tax-check-button" type="button">Проверить заполнение <img src="assets/about-btn-arrow.svg" alt="" class="btn__icon"></button>
         <p class="tax-form__status" id="tax-form-status" role="status" aria-live="polite"></p>
       </div>
     </form>
