@@ -6393,3 +6393,11 @@ html, body { max-width: 100%; overflow-x: clip; }
 @media (max-width: 900px) {
   .apply__consent-text { line-height: 1.45; }
 }
+
+/* Keep article links on a shared baseline despite wrapping titles. */
+@media (min-width: 901px) {
+  .blog-card { display: flex; flex-direction: column; }
+  .blog-card__image { flex: none; }
+  .blog-card__body { display: flex; flex-direction: column; flex: 1; }
+  .blog-card__link { margin-top: auto; align-self: flex-start; }
+}
