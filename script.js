@@ -746,13 +746,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!grid || !viewport || !track || !mobileDotsWrap) return;
 
   const PROMO = [
-    { id: 1, image: 'assets/promo/promo-1.webp', alt: 'Акция «Ботулинотерапия»' },
-    { id: 2, image: 'assets/promo/promo-2.webp', alt: 'Акция «Фотоомоложение»' },
-    { id: 3, image: 'assets/promo/promo-3.webp', alt: 'Акция «PRP терапия»' },
-    { id: 4, image: 'assets/promo/promo-4.webp', alt: 'Акция «Лазерное лечение акне»' },
-    { id: 5, image: 'assets/promo/promo-5.webp', alt: 'Акция «Фототерапия декольте»' },
-    { id: 6, image: 'assets/promo/promo-6.webp', alt: 'Акция «Биоревитализация»' },
-    { id: 7, image: 'assets/promo/promo-7.webp', alt: 'Акция «Термолифтинг»' }
+    { id: 1, image: 'assets/promo/november-1.jpg', alt: 'SMAS-лифтинг — акция до 30.11.2026' },
+    { id: 2, image: 'assets/promo/november-2.jpg', alt: 'Биорепарация Bellarti Nucleo — акция до 30.11.2026' },
+    { id: 3, image: 'assets/promo/november-3.jpg', alt: 'Процедура «Белая коза» — акция до 30.11.2026' },
+    { id: 4, image: 'assets/promo/november-4.jpg', alt: 'Процедура «Новогодний корпоратив» — акция до 30.11.2026' },
+    { id: 5, image: 'assets/promo/november-5.jpg', alt: 'Процедура «Сияние» — акция до 30.11.2026' },
+    { id: 6, image: 'assets/promo/november-6.jpg', alt: 'Фотоомоложение BBI Mula — акция до 30.11.2026' }
   ];
 
   let index = 0;
