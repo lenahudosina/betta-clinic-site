@@ -616,6 +616,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }));
 
   scroller.addEventListener('scroll', updateDots, { passive: true });
+  // Vertical wheel gestures belong to the page, even above the horizontal carousel.
+  scroller.addEventListener('wheel', event => {
+    if (event.ctrlKey || event.shiftKey || Math.abs(event.deltaX) >= Math.abs(event.deltaY)) return;
+    event.preventDefault();
+    const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
+    window.scrollBy({ top: event.deltaY * unit, behavior: 'instant' });
+  }, { passive: false });
+
 
   ['mouseenter', 'focusin', 'touchstart', 'pointerdown', 'wheel'].forEach(ev =>
     scroller.addEventListener(ev, () => { paused = true; stop(); }, { passive: true }));

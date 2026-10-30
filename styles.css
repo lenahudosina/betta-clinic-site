@@ -6340,3 +6340,10 @@ html {
   .site-footer__nav { width: 43cqw; }
   .site-footer__social { top: 62cqw; }
 }
+
+/* Header navigation and independent page scrolling over device cards. */
+.page-header__nav { gap: clamp(12px, 1.7vw, 30px); }
+.devices__scroller { overflow-y: hidden; }
+@media (max-width: 900px) {
+  .page-header__nav-mobile, .nav--mobile { max-height: calc(100svh - 80px); overflow-y: auto; }
+}
