@@ -122,16 +122,16 @@
       <fieldset class="tax-form__group">
         <legend><span>01</span> Налогоплательщик</legend>
         <div class="tax-fields tax-fields--three">
-          <label>Фамилия <em>*</em><input name="payer-last-name" autocomplete="family-name" required></label>
-          <label>Имя <em>*</em><input name="payer-first-name" autocomplete="given-name" required></label>
+          <label>Фамилия *<input name="payer-last-name" autocomplete="family-name" required></label>
+          <label>Имя *<input name="payer-first-name" autocomplete="given-name" required></label>
           <label>Отчество <input name="payer-middle-name" autocomplete="additional-name"></label>
         </div>
         <div class="tax-fields tax-fields--three">
-          <label>Дата рождения <em>*</em><input type="date" name="payer-birth-date" required></label>
-          <label>Телефон <em>*</em><input type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required></label>
+          <label>Дата рождения *<input type="date" name="payer-birth-date" required></label>
+          <label>Телефон *<input type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required></label>
           <label>Электронная почта <input type="email" name="email" id="tax-email" autocomplete="email" placeholder="mail@example.ru"></label>
         </div>
-        <label class="tax-field--short">ИНН <span>при наличии</span><input name="payer-inn" inputmode="numeric" pattern="[0-9]{12}" maxlength="12" title="Укажите 12 цифр ИНН" placeholder="12 цифр"></label>
+        <label class="tax-field--short">ИНН (при наличии)<input name="payer-inn" inputmode="numeric" pattern="[0-9]{12}" maxlength="12" title="Укажите 12 цифр ИНН" placeholder="12 цифр"></label>
       </fieldset>
 
       <fieldset class="tax-form__group">
@@ -151,11 +151,11 @@
         <label class="tax-inline-choice"><input type="checkbox" id="tax-same-person" checked><span>Данные пациента совпадают с данными налогоплательщика</span></label>
         <div id="tax-patient-fields" hidden>
           <div class="tax-fields tax-fields--three">
-            <label>Фамилия пациента <em>*</em><input name="patient-last-name" autocomplete="off" disabled></label>
-            <label>Имя пациента <em>*</em><input name="patient-first-name" autocomplete="off" disabled></label>
+            <label>Фамилия пациента *<input name="patient-last-name" autocomplete="off" disabled></label>
+            <label>Имя пациента *<input name="patient-first-name" autocomplete="off" disabled></label>
             <label>Отчество пациента <input name="patient-middle-name" autocomplete="off" disabled></label>
           </div>
-          <label class="tax-field--short">Дата рождения пациента <em>*</em><input type="date" name="patient-birth-date" disabled></label>
+          <label class="tax-field--short">Дата рождения пациента *<input type="date" name="patient-birth-date" disabled></label>
         </div>
         <div class="tax-document">
           <p class="tax-field-help">Документ пациента</p>
@@ -176,7 +176,7 @@
           <label class="tax-choice"><input type="radio" name="delivery" value="clinic" checked><span>В клинике</span></label>
           <label class="tax-choice"><input type="radio" name="delivery" value="email"><span>По электронной почте</span></label>
         </div>
-        <label class="tax-field--full">Комментарий <span>необязательно</span><textarea name="comment" rows="3" placeholder="Если хотите что-то уточнить"></textarea></label>
+        <label class="tax-field--full">Комментарий (необязательно)<textarea name="comment" rows="3" placeholder="Если хотите что-то уточнить"></textarea></label>
       </fieldset>
 
       <div class="tax-form__bottom">
