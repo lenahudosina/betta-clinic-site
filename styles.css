@@ -6347,3 +6347,13 @@ html {
 @media (max-width: 900px) {
   .page-header__nav-mobile, .nav--mobile { max-height: calc(100svh - 80px); overflow-y: auto; }
 }
+
+/* A slightly shorter welcome screen and tighter service-card actions. */
+@media (min-width: 901px) {
+  .hero--desktop { aspect-ratio: 1920 / 1000; }
+  .services .service-card__body h3 { min-height: 0; margin-bottom: 12px; }
+}
+@media (max-width: 900px) {
+  .hero--mobile { height: min(200vw, 92svh); min-height: 500px; }
+  .svc-screen .service-card__actions { margin-top: 8px; }
+}
