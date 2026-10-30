@@ -1,0 +1,196 @@
+/* Страница справки для налогового вычета */
+.tax-page {
+  width: min(100% - 60px, 1320px);
+  margin: 0 auto;
+  padding: 72px 0 112px;
+  color: var(--brown);
+}
+.tax-eyebrow {
+  margin: 0 0 20px;
+  color: #8c817c;
+  font: 500 14px/1.3 var(--font-heading);
+  letter-spacing: 0.02em;
+}
+.tax-eyebrow span { margin: 0 9px; }
+.tax-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 68px;
+  align-items: end;
+}
+.tax-hero h1 {
+  max-width: 920px;
+  margin: 0;
+  font: 500 clamp(54px, 6.2vw, 94px)/0.94 var(--font-heading);
+  letter-spacing: -0.055em;
+}
+.tax-lead {
+  max-width: 780px;
+  margin: 38px 0 0;
+  font: 400 clamp(18px, 1.7vw, 24px)/1.45 var(--font-body);
+  letter-spacing: -0.02em;
+}
+.tax-contact {
+  min-height: 260px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 12px;
+  background: var(--brown);
+  color: var(--cream);
+}
+.tax-contact__number {
+  margin-bottom: auto;
+  font: 500 14px/1 var(--font-heading);
+}
+.tax-contact p { margin: 0 0 18px; font: 500 20px/1.2 var(--font-heading); }
+.tax-contact a { display: flex; justify-content: space-between; gap: 12px; color: inherit; font: 500 21px/1.2 var(--font-heading); }
+.tax-contact a span { font-size: 25px; line-height: 0.9; }
+.tax-contact small { margin-top: 15px; color: #d5c9c2; font: 400 13px/1.4 var(--font-body); }
+.tax-section { margin-top: 104px; border-top: 1px solid var(--stroke); padding-top: 26px; }
+.tax-section__head {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  column-gap: 28px;
+  align-items: start;
+  margin-bottom: 35px;
+}
+.tax-section__head .tax-eyebrow { margin-top: 10px; }
+.tax-section__head h2 {
+  margin: 0;
+  font: 500 clamp(44px, 5.1vw, 76px)/0.96 var(--font-heading);
+  letter-spacing: -0.05em;
+}
+.tax-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.tax-step {
+  min-height: 270px;
+  display: flex;
+  flex-direction: column;
+  padding: 23px;
+  border: 1px solid #ded8d3;
+  border-radius: 12px;
+  background: #f7f6f5;
+}
+.tax-step > span { font: 500 14px/1 var(--font-heading); }
+.tax-step h3 { margin: auto 0 10px; font: 500 25px/1.1 var(--font-heading); letter-spacing: -0.035em; }
+.tax-step p { margin: 0; font: 400 16px/1.45 var(--font-body); }
+.tax-instructions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr);
+  gap: 68px;
+  padding-left: 238px;
+}
+.tax-instructions__lead { margin: 0 0 24px; font: 400 22px/1.4 var(--font-body); letter-spacing: -0.02em; }
+.tax-instructions ul { margin: 0; padding-left: 22px; font: 400 17px/1.5 var(--font-body); }
+.tax-instructions li + li { margin-top: 12px; }
+.tax-remember { padding: 25px; border-radius: 12px; background: #eee9e5; display: flex; flex-direction: column; }
+.tax-remember > span { font: 500 14px/1.2 var(--font-heading); }
+.tax-remember p { margin: 70px 0 24px; font: 400 19px/1.4 var(--font-body); }
+.tax-remember a { margin-top: auto; color: var(--brown); text-decoration: underline; text-underline-offset: 4px; font: 500 14px/1.4 var(--font-body); }
+.tax-remember a span { text-decoration: none; }
+.tax-form__intro { grid-column: 2; max-width: 700px; margin: 20px 0 0; font: 400 17px/1.45 var(--font-body); }
+.tax-form { margin-left: 238px; padding: 30px; border-radius: 14px; background: #f7f6f5; }
+.tax-form__group { min-width: 0; margin: 0; padding: 0 0 32px; border: 0; border-bottom: 1px solid #d8d0cb; }
+.tax-form__group + .tax-form__group { padding-top: 32px; }
+.tax-form__group legend { width: 100%; padding: 0 0 24px; font: 500 29px/1.15 var(--font-heading); letter-spacing: -0.035em; }
+.tax-form__group legend span { display: inline-block; min-width: 34px; color: #8c817c; font-size: 15px; vertical-align: 3px; letter-spacing: 0; }
+.tax-fields { display: grid; gap: 16px; }
+.tax-fields + .tax-fields { margin-top: 16px; }
+.tax-fields--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.tax-fields--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.tax-form label:not(.tax-choice):not(.tax-inline-choice) { display: flex; flex-direction: column; gap: 8px; font: 500 14px/1.3 var(--font-body); }
+.tax-form label > em { display: inline; color: #a24935; font-style: normal; }
+.tax-form label > span:not(.tax-choice span):not(.tax-inline-choice span) { color: #8c817c; font-weight: 400; }
+.tax-form input:not([type="checkbox"]):not([type="radio"]), .tax-form textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 50px;
+  padding: 12px 14px;
+  border: 1px solid #c9beb8;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--brown);
+  font: 400 16px/1.3 var(--font-body);
+  outline: none;
+}
+.tax-form textarea { resize: vertical; }
+.tax-form input:focus-visible, .tax-form textarea:focus-visible { border-color: var(--brown); box-shadow: 0 0 0 2px #bba89e; }
+.tax-field--short { max-width: 280px; margin-top: 16px; }
+.tax-field--full { margin-top: 22px; }
+.tax-field-help { margin: 0 0 15px; font: 400 15px/1.4 var(--font-body); }
+.tax-choice-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.tax-choice { position: relative; display: block; cursor: pointer; }
+.tax-choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.tax-choice span { display: block; min-width: 100px; padding: 12px 16px; border: 1px solid #c9beb8; border-radius: 8px; background: #fff; color: var(--brown); font: 500 15px/1.3 var(--font-body); text-align: center; }
+.tax-choice input:checked + span { background: var(--brown); border-color: var(--brown); color: #fff; }
+.tax-choice input:focus-visible + span { outline: 2px solid #bba89e; outline-offset: 2px; }
+.tax-field-error { margin: 10px 0 0; color: #9c3928; font: 500 14px/1.4 var(--font-body); }
+.tax-inline-choice { display: flex; align-items: flex-start; gap: 11px; cursor: pointer; font: 400 15px/1.4 var(--font-body); }
+.tax-inline-choice input { flex: 0 0 auto; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--brown); }
+#tax-patient-fields { margin-top: 22px; }
+.tax-document { margin-top: 28px; }
+.tax-document .tax-fields { margin-top: 18px; }
+.tax-form__bottom { padding-top: 30px; }
+.tax-inline-choice--consent + .tax-inline-choice--consent { margin-top: 14px; }
+.tax-inline-choice a { text-decoration: underline; text-underline-offset: 3px; }
+.tax-submit {
+  width: min(100%, 360px);
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 26px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: var(--brown);
+  color: #fff;
+  font: 500 18px/1.2 var(--font-heading);
+}
+.tax-submit:hover { opacity: 0.88; }
+.tax-submit span { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 6px; background: #fff; color: var(--brown); font-size: 24px; }
+.tax-form__status { margin: 16px 0 0; font: 500 15px/1.4 var(--font-body); }
+.tax-form__status:empty { display: none; }
+@media (max-width: 900px) {
+  .tax-page { width: calc(100% - 28px); padding: 32px 0 64px; }
+  .tax-eyebrow { margin-bottom: 14px; font-size: 12px; }
+  .tax-hero { grid-template-columns: 1fr; gap: 25px; }
+  .tax-hero h1 { font-size: 7.6567vw; line-height: 0.94; letter-spacing: -0.03em; }
+  .tax-lead { margin-top: 23px; font-size: 16px; line-height: 1.45; }
+  .tax-contact { min-height: 185px; padding: 18px; }
+  .tax-contact p { font-size: 17px; }
+  .tax-contact a { font-size: 19px; }
+  .tax-section { margin-top: 56px; padding-top: 16px; }
+  .tax-section__head { display: block; margin-bottom: 22px; }
+  .tax-section__head .tax-eyebrow { margin: 0 0 15px; }
+  .tax-section__head h2 { font-size: 7.6567vw; line-height: 0.94; letter-spacing: -0.03em; }
+  .tax-steps { grid-template-columns: 1fr; gap: 10px; }
+  .tax-step { min-height: 0; padding: 17px; }
+  .tax-step h3 { margin: 30px 0 7px; font-size: 21px; }
+  .tax-step p { font-size: 15px; }
+  .tax-instructions { display: block; padding-left: 0; }
+  .tax-instructions__lead { font-size: 17px; }
+  .tax-instructions ul { font-size: 15px; }
+  .tax-remember { margin-top: 24px; padding: 18px; }
+  .tax-remember p { margin: 35px 0 22px; font-size: 16px; }
+  .tax-form__intro { margin-top: 16px; font-size: 15px; }
+  .tax-form { margin-left: 0; padding: 18px 14px; }
+  .tax-form__group legend { font-size: 22px; padding-bottom: 18px; }
+  .tax-form__group legend span { min-width: 30px; font-size: 12px; vertical-align: 2px; }
+  .tax-form__group { padding-bottom: 27px; }
+  .tax-form__group + .tax-form__group { padding-top: 27px; }
+  .tax-fields--three, .tax-fields--two { grid-template-columns: 1fr; }
+  .tax-fields { gap: 13px; }
+  .tax-fields + .tax-fields { margin-top: 13px; }
+  .tax-field--short { max-width: none; }
+  .tax-choice-grid { gap: 8px; }
+  #tax-years .tax-choice { flex: 1 1 calc(50% - 4px); }
+  .tax-choice span { min-width: 0; padding: 12px; font-size: 14px; }
+  .tax-inline-choice { font-size: 14px; }
+  .tax-submit { width: 100%; }
+}

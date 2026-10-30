@@ -6334,3 +6334,9 @@ html {
     letter-spacing: -0.03em;
   }
 }
+
+/* Room for the tax deduction link in the shared mobile footer. */
+@media (max-width: 900px) {
+  .site-footer__nav { width: 43cqw; }
+  .site-footer__social { top: 62cqw; }
+}
