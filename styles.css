@@ -6471,3 +6471,16 @@ html, body { max-width: 100%; overflow-x: clip; }
 @media (min-width: 901px) {
   .continuous-viewport { overflow-x: hidden !important; touch-action: pan-y; }
 }
+
+/* Article navigation stays side by side on phones. */
+.article-pager__item .article-pager__short { display: none; }
+.article-pager__item--next { grid-column: 2; }
+@media (max-width: 900px) {
+  .article-pager { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .article-pager__item { min-width: 0; padding: 14px 10px; justify-content: center; }
+  .article-pager__item span { font-size: 13px; white-space: nowrap; }
+}
+@media (max-width: 480px) {
+  .article-pager__item .article-pager__full { display: none; }
+  .article-pager__item .article-pager__short { display: inline; }
+}
