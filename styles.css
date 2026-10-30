@@ -6375,3 +6375,15 @@ body .services .services__eyebrow { font-weight: 400; }
 @media (min-width: 901px) {
   .services .service-card__body h3 { min-height: 2.5em; margin-bottom: 12px; }
 }
+
+/* Keep the document within the screen; horizontal motion belongs to carousels. */
+html, body { max-width: 100%; overflow-x: clip; }
+.continuous-viewport {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.continuous-viewport::-webkit-scrollbar { display: none; }
+.continuous-track { transform: none !important; transition: none !important; touch-action: auto !important; }

@@ -553,92 +553,6 @@ document.addEventListener('DOMContentLoaded', () => {
    Секция «Аппараты» — горизонтальная лента (Figma 977:9221): точки,
    автопрокрутка пока секция на экране, пауза при взаимодействии
    =================================================================== */
-(() => {
-  const scroller = document.getElementById('devices-scroller');
-  const dotsWrap = document.getElementById('devices-dots');
-  if (!scroller || !dotsWrap) return;
-
-  const cards = Array.from(scroller.querySelectorAll('.device-card'));
-  if (!cards.length) return;
-
-  dotsWrap.innerHTML = cards.map((_, i) =>
-    `<button class="dot${i === 0 ? ' is-active' : ''}" type="button" aria-label="Аппарат ${i + 1}" data-dot="${i}"></button>`
-  ).join('');
-  const dots = Array.from(dotsWrap.querySelectorAll('.dot'));
-
-  const AUTO_MS = 4000;
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let timer = null;
-  let paused = false;
-
-  const leftOf = card => card.offsetLeft - cards[0].offsetLeft;
-
-  function currentIndex() {
-    const x = scroller.scrollLeft;
-    let best = 0;
-    let bestDist = Infinity;
-    cards.forEach((card, i) => {
-      const d = Math.abs(leftOf(card) - x);
-      if (d < bestDist) { bestDist = d; best = i; }
-    });
-    // у правого края последняя карточка может не дойти до начала — считаем её активной
-    if (scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 2) best = cards.length - 1;
-    return best;
-  }
-
-  function updateDots() {
-    const idx = currentIndex();
-    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === idx));
-  }
-
-  function goTo(i) {
-    scroller.scrollTo({ left: leftOf(cards[i]), behavior: 'smooth' });
-  }
-
-  function next() {
-    const atEnd = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 2;
-    if (atEnd) { scroller.scrollTo({ left: 0, behavior: 'smooth' }); return; }
-    goTo(Math.min(currentIndex() + 1, cards.length - 1));
-  }
-
-  function start() {
-    if (reduceMotion || timer || paused) return;
-    timer = setInterval(next, AUTO_MS);
-  }
-  function stop() {
-    clearInterval(timer);
-    timer = null;
-  }
-
-  dots.forEach(dot => dot.addEventListener('click', () => {
-    goTo(Number(dot.dataset.dot));
-    stop(); start();
-  }));
-
-  scroller.addEventListener('scroll', updateDots, { passive: true });
-  // Vertical wheel gestures belong to the page, even above the horizontal carousel.
-  scroller.addEventListener('wheel', event => {
-    if (event.ctrlKey || event.shiftKey || Math.abs(event.deltaX) >= Math.abs(event.deltaY)) return;
-    event.preventDefault();
-    const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
-    window.scrollBy({ top: event.deltaY * unit, behavior: 'instant' });
-  }, { passive: false });
-
-
-  ['mouseenter', 'focusin', 'touchstart', 'pointerdown', 'wheel'].forEach(ev =>
-    scroller.addEventListener(ev, () => { paused = true; stop(); }, { passive: true }));
-  ['mouseleave', 'focusout', 'touchend'].forEach(ev =>
-    scroller.addEventListener(ev, () => { paused = false; start(); }, { passive: true }));
-
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) start(); else stop();
-    }, { threshold: 0.4 }).observe(scroller);
-  }
-
-  updateDots();
-})();
-
 /* ===================================================================
    Секция «Отзывы» — десктоп 1:228 (сетка из 4 карточек), мобайл 1:2052
    (карусель, свайп + точки). Отзывы подгружаются пачками из REVIEWS —
@@ -1270,4 +1184,102 @@ document.addEventListener('DOMContentLoaded', () => {
   setup('.team__viewport', '#team-dots');
   setup('.reviews__viewport', '#reviews-dots-mobile');
   setup('.services__viewport', '.services__dots');
+})();
+
+/* Continuous native carousels: adjacent copies hide the cycle boundary. */
+(() => {
+  const mobile = matchMedia('(max-width: 900px)');
+  const configs = [
+    ['.services', '.services__viewport', '.services__track', '.service-card', '.services__dots'],
+    ['.results', '.results__viewport', '.results__track', '.result-card', '.results__dots'],
+    ['.team', '.team__viewport', '.team__track', '.team-card', '#team-dots'],
+    ['.reviews', '.reviews__viewport', '.reviews__track', '.review-card', '#reviews-dots-mobile'],
+    ['.promo', '.promo__viewport', '.promo__track', '.promo-card', '#promo-dots-mobile'],
+    ['.promo', '.promo__viewport-desktop', '.promo__grid', '.promo-card', null],
+    ['.devices', '.devices__scroller', null, '.device-card', '#devices-dots']
+  ];
+  configs.forEach(([rootSel, vpSel, trackSel, cardSel, dotsSel]) => {
+    const root = document.querySelector(rootSel), vp = root?.querySelector(vpSel);
+    const track = trackSel ? root?.querySelector(trackSel) : vp;
+    if (!vp || !track) return;
+    const originals = [...track.children].filter(el => el.matches(cardSel));
+    const n = originals.length;
+    if (n < 2) return;
+    const clone = el => {
+      const copy = el.cloneNode(true);
+      copy.removeAttribute('id');
+      copy.querySelectorAll('[id]').forEach(node => node.removeAttribute('id'));
+      copy.setAttribute('aria-hidden', 'true');
+      copy.querySelectorAll('a,button,input').forEach(node => node.tabIndex = -1);
+      return copy;
+    };
+    track.prepend(...originals.map(clone));
+    track.append(...originals.map(clone));
+    vp.classList.add('continuous-viewport');
+    track.classList.add('continuous-track');
+    const cards = [...track.children].filter(el => el.matches(cardSel));
+    cards.forEach(el => { el.style.scrollSnapAlign = 'start'; el.style.scrollSnapStop = 'always'; });
+    const dotsWrap = dotsSel ? root.querySelector(dotsSel) : null;
+    if (dotsWrap) dotsWrap.innerHTML = originals.map((_,i) => '<button class="dot" type="button" aria-label="Карточка '+(i+1)+'"></button>').join('');
+    const dots = dotsWrap ? [...dotsWrap.children] : [];
+    const left = i => cards[i].getBoundingClientRect().left - cards[0].getBoundingClientRect().left;
+    const cycle = () => left(2*n)-left(n);
+    let timer, resetting = false;
+    const visible = () => vp.clientWidth > 0 && vp.getClientRects().length;
+    function nearest() {
+      let best = 0, distance = Infinity;
+      cards.forEach((_,i) => { const d = Math.abs(left(i)-vp.scrollLeft); if (d < distance) { distance=d; best=i; } });
+      return best;
+    }
+    function sync() {
+      const active = nearest()%n;
+      dots.forEach((dot,i) => dot.classList.toggle('is-active',i===active));
+    }
+    function jump(x) {
+      resetting = true;
+      const snap = vp.style.scrollSnapType;
+      vp.style.scrollSnapType = 'none';
+      vp.scrollTo({left:x,behavior:'instant'});
+      requestAnimationFrame(() => { vp.style.scrollSnapType=snap; resetting=false; sync(); });
+    }
+    function settle() {
+      if (!visible() || resetting) return;
+      const x=vp.scrollLeft, start=left(n), width=cycle();
+      if (x < start-1) jump(x+width);
+      else if (x >= start+width-1) jump(x-width);
+      sync();
+    }
+    function go(i) { vp.scrollTo({left:left(Math.max(0,Math.min(cards.length-1,i))),behavior:'smooth'}); }
+    root.addEventListener('click', event => {
+      if (!visible()) return;
+      const dot=event.target.closest('.dot');
+      const nav=event.target.closest('.nav-btn');
+      if (dot && dotsWrap?.contains(dot)) {
+        event.preventDefault(); event.stopImmediatePropagation();
+        go(n+dots.indexOf(dot));
+      } else if (nav && root.contains(nav)) {
+        event.preventDefault(); event.stopImmediatePropagation();
+        go(nearest()+(nav.dataset.dir==='prev'?-1:1));
+      }
+    },true);
+    vp.addEventListener('scroll', () => {
+      sync(); clearTimeout(timer); timer=setTimeout(settle,180);
+    },{passive:true});
+    vp.addEventListener('scrollend',settle);
+    vp.addEventListener('wheel', event => {
+      if (event.ctrlKey || event.shiftKey || Math.abs(event.deltaX)>=Math.abs(event.deltaY)) return;
+      event.preventDefault();
+      window.scrollBy({top:event.deltaY*(event.deltaMode===1?16:event.deltaMode===2?innerHeight:1),behavior:'instant'});
+    },{passive:false});
+    function initialize() { if (visible()) jump(left(n)); }
+    requestAnimationFrame(initialize);
+    window.addEventListener('resize', () => requestAnimationFrame(initialize));
+    if (root.matches('.devices') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInterval(() => {
+        if (!visible() || root.matches(':hover') || root.contains(document.activeElement)) return;
+        const box=vp.getBoundingClientRect();
+        if (box.top<innerHeight && box.bottom>0) go(nearest()+1);
+      },4000);
+    }
+  });
 })();
