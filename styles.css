@@ -6387,3 +6387,9 @@ html, body { max-width: 100%; overflow-x: clip; }
 }
 .continuous-viewport::-webkit-scrollbar { display: none; }
 .continuous-track { transform: none !important; transition: none !important; touch-action: auto !important; }
+
+/* More comfortable spacing in booking-form consent text. */
+.apply__consent-text { line-height: 1.2; }
+@media (max-width: 900px) {
+  .apply__consent-text { line-height: 1.45; }
+}
