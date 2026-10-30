@@ -209,3 +209,7 @@
 @media (max-width: 900px) {
   .tax-page--form-only h1 { font-size: 7.6567vw; line-height: 0.94; letter-spacing: -0.03em; }
 }
+
+/* Text rhythm in the application introduction and consent. */
+.tax-form__intro { line-height: 1; }
+.tax-inline-choice--consent { line-height: 1.6; }
