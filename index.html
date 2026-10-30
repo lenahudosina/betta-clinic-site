@@ -48,8 +48,8 @@
   body > .services .service-card__image { grid-row: 2; height: 100%; }
   body > .services .service-card__actions { grid-row: 3; margin-top: 8px; }
   body > .why .why__stack { padding-bottom: 30vh; }
-  body > .promo--home + .why { margin-top: 30px; padding-top: 0; }
-  body > .promo--home + .why .why__heading { padding-top: 0; }
+  body > .services + .why { margin-top: 30px; padding-top: 0; }
+  body > .services + .why .why__heading { padding-top: 0; }
   body > .why .why__stack { padding-bottom: 45px; }
   body > .why .why-card-wrap:last-child { padding-bottom: 0; }
   body > .why .why-card-wrap:last-child { position: relative; top: auto; z-index: 10; }
@@ -357,28 +357,7 @@
 </section>
 
 <!-- ===================== ПОЧЕМУ МЫ? (81:592 + карточки 81:612…81:652) ===================== -->
-<section class="promo promo--home" id="promo" aria-labelledby="promo-title">
-  <div class="promo__head">
-    <h2 id="promo-title" class="promo__title">Акции ноября</h2>
-    <div class="promo__nav" aria-label="Навигация по акциям">
-      <button class="nav-btn" type="button" data-dir="prev" aria-label="Назад">
-        <img src="assets/services/nav-arrow.svg" alt="" style="transform:rotate(180deg)" loading="lazy" decoding="async">
-      </button>
-      <button class="nav-btn" type="button" data-dir="next" aria-label="Вперёд">
-        <img src="assets/services/nav-arrow.svg" alt="" loading="lazy" decoding="async">
-      </button>
-    </div>
-  </div>
 
-  <div class="promo__viewport-desktop">
-    <div class="promo__grid" id="promo-grid"></div>
-  </div>
-
-  <div class="promo__viewport">
-    <div class="promo__track" id="promo-track"></div>
-  </div>
-  <div class="promo__dots" id="promo-dots-mobile" aria-label="Позиция в списке акций"></div>
-</section>
 
 <section class="why" data-node-id="81:592" aria-labelledby="why-title">
   <h2 id="why-title" class="why__heading">Почему мы?</h2>
@@ -572,6 +551,29 @@
 </section>
 
 <!-- ===================== БЛОК «ОСТАВЬТЕ ЗАЯВКУ» (десктоп 1:459 / мобайл 1:1872) ===================== -->
+<section class="promo promo--home" id="promo" aria-labelledby="promo-title">
+  <div class="promo__head">
+    <h2 id="promo-title" class="promo__title">Акции ноября</h2>
+    <div class="promo__nav" aria-label="Навигация по акциям">
+      <button class="nav-btn" type="button" data-dir="prev" aria-label="Назад">
+        <img src="assets/services/nav-arrow.svg" alt="" style="transform:rotate(180deg)" loading="lazy" decoding="async">
+      </button>
+      <button class="nav-btn" type="button" data-dir="next" aria-label="Вперёд">
+        <img src="assets/services/nav-arrow.svg" alt="" loading="lazy" decoding="async">
+      </button>
+    </div>
+  </div>
+
+  <div class="promo__viewport-desktop">
+    <div class="promo__grid" id="promo-grid"></div>
+  </div>
+
+  <div class="promo__viewport">
+    <div class="promo__track" id="promo-track"></div>
+  </div>
+  <div class="promo__dots" id="promo-dots-mobile" aria-label="Позиция в списке акций"></div>
+</section>
+
 <section class="apply" id="apply" data-node-id="1:459" data-node-id-mobile="1:1872" aria-labelledby="apply-title">
   <div class="apply__photo">
     <img src="assets/apply/photo-desktop.webp" alt="Клиентка клиники БЕТТА" class="apply__photo-img" loading="lazy" decoding="async">
