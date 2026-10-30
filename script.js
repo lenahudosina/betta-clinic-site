@@ -723,23 +723,19 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 /* ===================================================================
-   Секция «Наши акции» (страница promo.html) — карусель картинок.
-   Заголовок/цена уже впечатаны в саму картинку акции (готовый баннер),
-   поэтому карточка — это просто фото. Акций будет много, поэтому
-   десктоп листается кнопками (как «Услуги»/«Результаты работы»),
-   мобайл — свайпом с точками.
-   Как появятся реальные баннеры — положите файлы в assets/promo/ и
-   допишите/замените записи в PROMO ниже (id, image, alt).
+   «Наши акции»: на телефоне используется родная горизонтальная прокрутка
+   с фиксацией каждой карточки, как в разделе «Услуги».
    =================================================================== */
 (() => {
   const section = document.querySelector('.promo');
   if (!section) return;
 
   const grid = section.querySelector('#promo-grid');
+  const viewport = section.querySelector('.promo__viewport');
   const track = section.querySelector('#promo-track');
   const mobileDotsWrap = section.querySelector('#promo-dots-mobile');
   const navButtons = Array.from(section.querySelectorAll('.promo__nav .nav-btn'));
-  if (!grid || !track || !mobileDotsWrap) return;
+  if (!grid || !viewport || !track || !mobileDotsWrap) return;
 
   const PROMO = [
     { id: 1, image: 'assets/promo/promo-1.webp', alt: 'Акция «Ботулинотерапия»' },
@@ -752,65 +748,50 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   let index = 0;
-  let cards = [];
-
-  function cardMarkup(item) {
-    return `
-      <article class="promo-card" data-promo-id="${item.id}">
-        <img src="${item.image}" alt="${item.alt}" loading="lazy">
-      </article>
-    `;
-  }
-
-  function createCards() {
-    const html = PROMO.map(cardMarkup).join('');
-    grid.innerHTML = html;
-    track.innerHTML = html;
-    cards = Array.from(grid.querySelectorAll('.promo-card'));
-  }
-
-  function createMobileDots() {
-    mobileDotsWrap.innerHTML = PROMO.map((_, i) =>
-      `<button class="dot${i === 0 ? ' is-active' : ''}" type="button" aria-label="Акция ${i + 1}" data-dot="${i}"></button>`
-    ).join('');
-    mobileDotsWrap.querySelectorAll('.dot').forEach(dot => {
-      dot.addEventListener('click', () => setIndex(Number(dot.dataset.dot)));
-    });
-  }
+  let desktopCards = [];
+  let mobileCards = [];
+  let dots = [];
 
   function isMobile() {
     return window.matchMedia('(max-width: 900px)').matches;
   }
 
-  function visibleCount() {
-    return isMobile() ? 1 : 4;
-  }
-
   function maxIndex() {
-    return Math.max(0, PROMO.length - visibleCount());
+    return Math.max(0, PROMO.length - (isMobile() ? 1 : 4));
   }
 
-  function updateNavState() {
-    const max = maxIndex();
-    navButtons.forEach(btn => {
-      btn.disabled = max === 0;
+  function slideLeft(card) {
+    return card.offsetLeft - mobileCards[0].offsetLeft;
+  }
+
+  function syncMobileDots() {
+    if (!isMobile() || !mobileCards.length) return;
+    let nearest = 0;
+    let distance = Infinity;
+    mobileCards.forEach((card, i) => {
+      const nextDistance = Math.abs(slideLeft(card) - viewport.scrollLeft);
+      if (nextDistance < distance) {
+        distance = nextDistance;
+        nearest = i;
+      }
     });
+    index = nearest;
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
   }
 
-  function render() {
-    if (!cards.length) return;
-
+  function render(animate = false) {
     if (isMobile()) {
-      track.style.transform = `translateX(${-index * 100}%)`;
-      const dots = Array.from(mobileDotsWrap.querySelectorAll('.dot'));
-      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+      viewport.scrollTo({
+        left: slideLeft(mobileCards[index]),
+        behavior: animate ? 'smooth' : 'auto'
+      });
+      syncMobileDots();
     } else {
-      const gap = cards[0].parentElement.getBoundingClientRect().width * (1.0208 / 100);
-      const step = cards[0].getBoundingClientRect().width + gap;
+      const gap = desktopCards[0].parentElement.getBoundingClientRect().width * (1.0208 / 100);
+      const step = desktopCards[0].getBoundingClientRect().width + gap;
       grid.style.transform = `translateX(${-index * step}px)`;
     }
-
-    updateNavState();
+    navButtons.forEach(btn => { btn.disabled = maxIndex() === 0; });
   }
 
   function setIndex(next, loop = false) {
@@ -820,37 +801,34 @@ document.addEventListener('DOMContentLoaded', () => {
       if (next < 0) next = max;
     }
     index = Math.min(Math.max(next, 0), max);
-    render();
+    render(true);
   }
 
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      setIndex(index + (btn.dataset.dir === 'next' ? 1 : -1), true);
-    });
-  });
+  const markup = PROMO.map(item => `
+    <article class="promo-card" data-promo-id="${item.id}">
+      <img src="${item.image}" alt="${item.alt}" loading="lazy" draggable="false">
+    </article>
+  `).join('');
+  grid.innerHTML = markup;
+  track.innerHTML = markup;
+  desktopCards = Array.from(grid.querySelectorAll('.promo-card'));
+  mobileCards = Array.from(track.querySelectorAll('.promo-card'));
 
-  // Свайп пальцем или мышью: листаем, если сдвиг по горизонтали заметно больше вертикального.
-  let startX = null, startY = 0;
-  track.style.touchAction = 'pan-y';
-  track.querySelectorAll('img').forEach(img => { img.draggable = false; });
-  track.addEventListener('pointerdown', e => { startX = e.clientX; startY = e.clientY; });
-  track.addEventListener('pointerup', e => {
-    if (startX == null) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    startX = null;
-    if (Math.abs(dx) < 30 || Math.abs(dx) < Math.abs(dy)) return;
-    setIndex(index + (dx < 0 ? 1 : -1), true);
-  });
-  track.addEventListener('pointercancel', () => { startX = null; });
+  mobileDotsWrap.innerHTML = PROMO.map((_, i) =>
+    `<button class="dot${i === 0 ? ' is-active' : ''}" type="button" aria-label="Акция ${i + 1}" data-dot="${i}"></button>`
+  ).join('');
+  dots = Array.from(mobileDotsWrap.querySelectorAll('.dot'));
+  dots.forEach(dot => dot.addEventListener('click', () => setIndex(Number(dot.dataset.dot))));
 
+  viewport.addEventListener('scroll', syncMobileDots, { passive: true });
+  navButtons.forEach(btn => btn.addEventListener('click', () =>
+    setIndex(index + (btn.dataset.dir === 'next' ? 1 : -1), true)
+  ));
   window.addEventListener('resize', () => {
     index = Math.min(index, maxIndex());
     render();
   });
 
-  createCards();
-  createMobileDots();
   render();
 })();
 

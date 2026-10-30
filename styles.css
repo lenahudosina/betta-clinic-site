@@ -2715,21 +2715,35 @@ button {
     left: 3.7313cqw;
     width: 92.5391cqw;
     margin-top: 5.8209cqw;
-    overflow: hidden;
-    border-radius: 1.2438cqw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+
+  .promo__viewport::-webkit-scrollbar { display: none; }
 
   .promo__track {
     display: flex;
-    transition: transform 0.35s ease;
-    will-change: transform;
+    gap: 3cqw;
+    transform: none !important;
+    transition: none;
+    will-change: auto;
   }
 
   .promo__track .promo-card {
     flex: 0 0 100%;
     width: 100%;
     aspect-ratio: 1080 / 1350;
-    border-radius: 8px;
+    border-radius: 1.2438cqw;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .promo__track .promo-card img {
+    user-select: none;
+    -webkit-user-drag: none;
   }
 
   #promo-dots-mobile {
