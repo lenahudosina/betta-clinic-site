@@ -14,6 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isHidden) {
         nav.removeAttribute('hidden');
         menuBtn.setAttribute('aria-expanded', 'true');
+        const fitMenu = () => {
+          if (nav.hidden) return;
+          const top = nav.getBoundingClientRect().top;
+          const hero = nav.closest('.hero');
+          const bottom = Math.min(window.visualViewport?.height || innerHeight, hero ? hero.getBoundingClientRect().bottom : Infinity);
+          nav.style.maxHeight = Math.max(120, bottom - top - 16) + 'px';
+        };
+        fitMenu();
+        requestAnimationFrame(fitMenu);
       } else {
         nav.setAttribute('hidden', '');
         menuBtn.setAttribute('aria-expanded', 'false');
