@@ -6439,3 +6439,16 @@ html, body { max-width: 100%; overflow-x: clip; }
 .article { padding-top: 36px; }
 .article__lead { line-height: 1; }
 @media (max-width: 900px) { .article { padding-top: 24px; } }
+
+/* Consistent 100% line spacing throughout article content. */
+.article__title,
+.article__lead,
+.article__text,
+.article__text p,
+.article__text h2,
+.article__text h3,
+.article__text ul,
+.article__text ol,
+.article__text li,
+.article__date,
+.article__back { line-height: 1; }
