@@ -6357,3 +6357,16 @@ html {
   .hero--mobile { height: min(200vw, 92svh); min-height: 500px; }
   .svc-screen .service-card__actions { margin-top: 8px; }
 }
+
+/* Regular service section labels and centered experience rows. */
+body .services .services__title,
+body .services .services__eyebrow { font-weight: 400; }
+@media (min-width: 901px) {
+  .stats--desktop .stats__row:nth-child(n) > .stats__index,
+  .stats--desktop .stats__row:nth-child(n) > .stats__value,
+  .stats--desktop .stats__row:nth-child(n) > .stats__label { top: 50%; translate: 0 -50%; }
+  .stats--desktop .stats__label { font-size: 1.05cqw; text-align: center; width: 29cqw; letter-spacing: -0.01em; }
+}
+@media (max-width: 900px) {
+  .stats--mobile .stats__label { left: 59.4378cqw; width: 35cqw; font-size: 3.5cqw; line-height: 1.1; }
+}
