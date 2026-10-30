@@ -6370,3 +6370,8 @@ body .services .services__eyebrow { font-weight: 400; }
 @media (max-width: 900px) {
   .stats--mobile .stats__label { left: 59.4378cqw; width: 35cqw; font-size: 3.5cqw; line-height: 1.1; }
 }
+
+/* Reserve two title lines so every service card has aligned buttons. */
+@media (min-width: 901px) {
+  .services .service-card__body h3 { min-height: 2.5em; margin-bottom: 12px; }
+}

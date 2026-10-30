@@ -20,8 +20,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Golos+Text:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261030-type3">
-<link rel="stylesheet" href="tax-deduction.css?v=2">
+<link rel="stylesheet" href="styles.css?v=20261030-align4">
+<link rel="stylesheet" href="tax-deduction.css?v=3">
 </head>
 <body>
 <header class="page-header" id="pageHeader">
@@ -65,58 +65,11 @@
     <a href="contacts.html">Контакты</a>
   </nav>
 </header>
-<main class="tax-page">
-  <section class="tax-hero" aria-labelledby="tax-title">
-    <div class="tax-hero__copy">
-      <p class="tax-eyebrow">Пациентам <span aria-hidden="true">/</span> Документы</p>
-      <h1 id="tax-title">Справка для оформления налогового вычета</h1>
-      <p class="tax-lead">Для получения справки об оплате медицинских услуг предлагаем заполнить заявление. Справку можно запросить за оплаченные услуги за последние три года. Если нужен документ за текущий год, уточните порядок оформления у администратора.</p>
-    </div>
-    <aside class="tax-contact" aria-label="Контакт клиники">
-      <p>Нужна помощь с заявлением?</p>
-      <small>Подскажем, какие сведения понадобятся.</small>
-      <a href="tel:+78312810888">+7 (831) 281-08-88</a>
-    </aside>
-  </section>
-
-  <section class="tax-section" aria-labelledby="tax-steps-title">
-    <div class="tax-section__head">
-      <p class="tax-eyebrow">01 / Порядок</p>
-      <h2 id="tax-steps-title">Как оформить заявление</h2>
-    </div>
-    <div class="tax-steps">
-      <article class="tax-step"><span>01</span><h3>Прочитайте инструкцию</h3><p>Проверьте, на чьё имя нужна справка, и выберите год оплаты медицинских услуг.</p></article>
-      <article class="tax-step"><span>02</span><h3>Заполните данные</h3><p>Укажите налогоплательщика, пациента и способ, которым вам удобно получить документ.</p></article>
-      <article class="tax-step"><span>03</span><h3>Сверьте заявление</h3><p>Перед отправкой проверьте ФИО, даты и контактные данные. Сейчас форма доступна для предварительной проверки.</p></article>
-    </div>
-  </section>
-
-  <section class="tax-section tax-section--instructions" aria-labelledby="tax-instructions-title">
-    <div class="tax-section__head">
-      <p class="tax-eyebrow">02 / Инструкция</p>
-      <h2 id="tax-instructions-title">Перед заполнением</h2>
-    </div>
-    <div class="tax-instructions">
-      <div>
-        <p class="tax-instructions__lead">Убедитесь, что вы указываете данные человека, на которого требуется справка. Если пациент и налогоплательщик — разные люди, заполните сведения о каждом отдельно.</p>
-        <ul>
-          <li>ФИО и дата рождения должны совпадать с документами.</li>
-          <li>Отметьте все годы, за которые нужна справка.</li>
-          <li>Для связи оставьте актуальный телефон. Для получения по электронной почте укажите адрес.</li>
-        </ul>
-      </div>
-      <div class="tax-remember">
-        <span>Помните</span>
-        <p>Справка оформляется на основании сведений об оплаченных услугах. Перед заполнением уточните, кто был плательщиком и за какого пациента вносилась оплата.</p>
-        <a href="https://www.nalog.gov.ru/rn77/taxation/taxes/ndfl/nalog_vichet/soc_nv/soc_nv_pm/" target="_blank" rel="noopener">О налоговом вычете на сайте ФНС <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-  </section>
-
+<main class="tax-page tax-page--form-only">
   <section class="tax-section tax-section--form" aria-labelledby="tax-form-title">
     <div class="tax-section__head">
-      <p class="tax-eyebrow">03 / Заявление</p>
-      <h2 id="tax-form-title">Заявление на справку</h2>
+      <p class="tax-eyebrow">Пациентам / Документы</p>
+      <h1 id="tax-form-title">Заявление на справку</h1>
       <p class="tax-form__intro">Это образец формы. Вы можете заполнить и проверить поля. Отправка заявления в клинику пока не подключена.</p>
     </div>
     <form class="tax-form" id="tax-form" onsubmit="return false" novalidate>
@@ -181,7 +134,6 @@
       </fieldset>
 
       <div class="tax-form__bottom">
-        <label class="tax-inline-choice tax-inline-choice--consent"><input type="checkbox" id="tax-instructions-read" required><span>Я ознакомился(-ась) с инструкцией по заполнению заявления.</span></label>
         <label class="tax-inline-choice tax-inline-choice--consent"><input type="checkbox" id="tax-consent" required><span>Я принимаю условия <a href="privacy.html" target="_blank" rel="noopener">Политики обработки персональных данных</a>.</span></label>
         <button class="tax-submit" id="tax-check-button" type="button">Проверить заполнение <img src="assets/about-btn-arrow.svg" alt="" class="btn__icon"></button>
         <p class="tax-form__status" id="tax-form-status" role="status" aria-live="polite"></p>

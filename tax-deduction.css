@@ -203,3 +203,9 @@
 .tax-contact a { margin-top: auto; padding-top: 28px; }
 .tax-submit { padding: 6px 6px 6px 20px; border-radius: 5px; min-height: 60px; }
 .tax-submit .btn__icon { width: 48px; height: 48px; flex: 0 0 48px; }
+
+.tax-page--form-only .tax-section--form { margin-top: 0; border-top: 0; padding-top: 0; }
+.tax-page--form-only h1 { margin: 0; font: 500 clamp(44px, 5.1vw, 76px)/0.96 var(--font-heading); letter-spacing: -0.05em; }
+@media (max-width: 900px) {
+  .tax-page--form-only h1 { font-size: 7.6567vw; line-height: 0.94; letter-spacing: -0.03em; }
+}
