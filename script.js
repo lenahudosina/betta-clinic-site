@@ -1285,10 +1285,23 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => requestAnimationFrame(initialize));
     if (root.matches('.devices') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setInterval(() => {
-        if (!visible() || root.matches(':hover') || root.contains(document.activeElement)) return;
+        if (!mobile.matches || !visible() || root.matches(':hover') || root.contains(document.activeElement)) return;
         const box=vp.getBoundingClientRect();
         if (box.top<innerHeight && box.bottom>0) go(nearest()+1);
       },4000);
     }
   });
 })();
+
+/* Desktop carousel movement is controlled by navigation buttons. */
+document.addEventListener('wheel', event => {
+  if (matchMedia('(max-width: 900px)').matches || event.ctrlKey) return;
+  if (!event.target.closest('.continuous-viewport')) return;
+  if (event.shiftKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
+}, {capture: true, passive: false});
+document.addEventListener('dragstart', event => {
+  if (matchMedia('(min-width: 901px)').matches && event.target.closest('.continuous-viewport')) event.preventDefault();
+}, true);

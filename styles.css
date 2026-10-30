@@ -6466,3 +6466,8 @@ html, body { max-width: 100%; overflow-x: clip; }
   .article-pager__item { padding: 18px; }
   .article-pager__item strong { font-size: 18px; }
 }
+
+/* Desktop uses buttons; mobile retains native swiping. */
+@media (min-width: 901px) {
+  .continuous-viewport { overflow-x: hidden !important; touch-action: pan-y; }
+}
