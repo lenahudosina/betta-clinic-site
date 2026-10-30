@@ -6452,3 +6452,17 @@ html, body { max-width: 100%; overflow-x: clip; }
 .article__text li,
 .article__date,
 .article__back { line-height: 1; }
+
+/* Adjacent articles with their titles. */
+.article-pager { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--stroke); }
+.article-pager__item { display: flex; flex-direction: column; gap: 14px; padding: 20px; border: 1px solid #ded8d3; border-radius: 8px; color: var(--brown); background: #f9f9f9; }
+.article-pager__item span { color: #8c817c; font: 400 14px/1 var(--font-body); }
+.article-pager__item strong { font: 500 20px/1 var(--font-heading); }
+.article-pager__item--next { text-align: right; }
+.article-pager__item:hover { border-color: var(--brown); }
+.article-pager__item:focus-visible { outline: 2px solid var(--brown); outline-offset: 3px; }
+@media (max-width: 900px) {
+  .article-pager { grid-template-columns: 1fr; gap: 12px; margin-top: 32px; }
+  .article-pager__item { padding: 18px; }
+  .article-pager__item strong { font-size: 18px; }
+}
