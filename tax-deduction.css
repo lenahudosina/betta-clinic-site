@@ -96,7 +96,7 @@
 .tax-form__intro { grid-column: 2; max-width: 700px; margin: 20px 0 0; font: 400 17px/1.45 var(--font-body); }
 .tax-form { margin-left: 238px; padding: 30px; border-radius: 14px; background: #f7f6f5; }
 .tax-form__group { min-width: 0; margin: 0; padding: 0 0 32px; border: 0; border-bottom: 1px solid #d8d0cb; }
-.tax-form__group + .tax-form__group { padding-top: 32px; }
+.tax-form__group + .tax-form__group { padding-top: 0; margin-top: 32px; }
 .tax-form__group legend { width: 100%; padding: 0 0 24px; font: 500 29px/1.15 var(--font-heading); letter-spacing: -0.035em; }
 .tax-form__group legend span { display: inline-block; min-width: 34px; color: #8c817c; font-size: 15px; vertical-align: 3px; letter-spacing: 0; }
 .tax-fields { display: grid; gap: 16px; }
@@ -183,7 +183,7 @@
   .tax-form__group legend { font-size: 22px; padding-bottom: 18px; }
   .tax-form__group legend span { min-width: 30px; font-size: 12px; vertical-align: 2px; }
   .tax-form__group { padding-bottom: 27px; }
-  .tax-form__group + .tax-form__group { padding-top: 27px; }
+  .tax-form__group + .tax-form__group { padding-top: 0; margin-top: 27px; }
   .tax-fields--three, .tax-fields--two { grid-template-columns: 1fr; }
   .tax-fields { gap: 13px; }
   .tax-fields + .tax-fields { margin-top: 13px; }
@@ -196,7 +196,7 @@
 }
 
 /* Spacing and shared booking-button appearance. */
-.tax-form__group + .tax-form__group legend { padding-top: 14px; }
+.tax-form__group + .tax-form__group legend { padding-top: 0; }
 .tax-contact { justify-content: flex-start; }
 .tax-contact p { margin: 0 0 12px; }
 .tax-contact small { margin: 0; }
