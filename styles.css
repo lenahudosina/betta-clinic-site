@@ -3535,12 +3535,12 @@ button {
 
 .site-footer__legal--left {
   left: 1.5625cqw;
-  top: 36.4583cqw;
+  bottom: 1.5625cqw;
 }
 
 .site-footer__legal--right {
   right: 1.5625cqw;
-  top: 37.0833cqw;
+  bottom: 1.5625cqw;
   text-align: right;
 }
 
@@ -3634,6 +3634,7 @@ button {
     width: 90cqw;
     font-size: 2.9851cqw;
     line-height: 1.35;
+    bottom: auto;
   }
 
   .site-footer__legal--left {
@@ -5580,6 +5581,11 @@ button {
   flex-direction: column;
   align-items: flex-end;
   gap: 12px;
+  transition: bottom 0.2s ease;
+}
+
+.chat-fab.is-over-footer {
+  bottom: max(88px, 5cqw);
 }
 
 .chat-fab__btn {
@@ -5686,6 +5692,10 @@ button {
   .chat-fab {
     right: 16px;
     bottom: 16px;
+  }
+
+  .chat-fab.is-over-footer {
+    bottom: 72px;
   }
 
   .chat-fab__btn {

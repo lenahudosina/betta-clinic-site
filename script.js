@@ -1024,8 +1024,8 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 /* ===================================================================
-   Кнопка чата в углу — по клику раскрывает список: Max, ВКонтакте,
-   почта, позвонить. Закрывается по повторному клику, Esc и клику мимо.
+   Кнопка чата в углу — по клику раскрывает список: позвонить, Max,
+   ВКонтакте, почта. Закрывается по повторному клику, Esc и клику мимо.
    =================================================================== */
 (() => {
   const fab = document.getElementById('chatFab');
@@ -1071,6 +1071,16 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   updateTone();
+
+  /* Когда юридический блок футера появляется в окне, поднимаем кнопку,
+     чтобы она не перекрывала ссылки и нижний край оставался ровным. */
+  const footerLegal = document.querySelector('.site-footer__legal--right');
+  if (footerLegal && 'IntersectionObserver' in window) {
+    const footerObserver = new IntersectionObserver(([entry]) => {
+      fab.classList.toggle('is-over-footer', entry.isIntersecting);
+    });
+    footerObserver.observe(footerLegal);
+  }
 
   btn.addEventListener('click', () => setOpen(menu.hidden));
   document.addEventListener('click', (e) => {
