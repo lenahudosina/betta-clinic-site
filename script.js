@@ -871,7 +871,7 @@ document.addEventListener('DOMContentLoaded', () => {
       toast = document.createElement('div');
       toast.className = 'apply__toast';
       toast.setAttribute('role', 'status');
-      toast.textContent = 'Чтобы заполнить форму, отметьте согласие с политикой';
+      toast.textContent = 'Чтобы заполнить форму, отметьте согласие на обработку персональных данных';
       document.body.appendChild(toast);
     }
     clearTimeout(toastTimer);

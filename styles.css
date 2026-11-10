@@ -3831,6 +3831,30 @@ button {
   letter-spacing: -0.03em;
 }
 
+.policy__eyebrow {
+  margin: 0 0 12px;
+  color: #88786f;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.policy__intro {
+  max-width: 760px;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.policy__download {
+  margin-bottom: 40px !important;
+  font-weight: 600;
+}
+
+.policy__content > :first-child {
+  margin-top: 0;
+}
+
 .policy h2 {
   margin: 40px 0 16px;
   font-family: var(--font-heading);
