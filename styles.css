@@ -618,8 +618,9 @@ button {
 .about__text--mobile {
   position: absolute;
   left: 39.3035cqw;
+  right: 2.9851cqw;
   top: 6.2189cqw;
-  width: 60.5cqw;
+  width: auto;
   font-family: var(--font-heading);
   font-weight: 300;
   font-size: 3.4826cqw;
@@ -631,7 +632,7 @@ button {
 .about__label--mobile {
   position: absolute;
   left: 4.2289cqw;
-  top: 84cqw;
+  top: 82.75cqw;
   font-size: 2.9851cqw;
   font-weight: 500;
 }
